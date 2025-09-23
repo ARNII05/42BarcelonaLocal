@@ -7,7 +7,7 @@ int strString(char ** tab)
     i = 0;
     while (tab[i] != 0)
         i++;
-    return i;
+    return (i);
 }
 
 int letterCount(char *tab)
@@ -17,7 +17,7 @@ int letterCount(char *tab)
     i = 0;
     while (tab[i] != 0)
         i++;
-    return i;
+    return (i);
 }
 
 int hasFourLetters(char *tab)
@@ -42,7 +42,7 @@ int ft_count_if(char **tab, int (*f)(char*))
             count++;    
         i++;
     }
-    return count;
+    return (count);
 }
 
 int main(void)
