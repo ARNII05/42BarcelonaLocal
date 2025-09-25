@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_if.c                                   :+:      :+:    :+:      */
+/*   main.c                                          :+:      :+:    :+:      */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,55 +9,37 @@
 /*   Updated: 2025/09/25 10:38:26 by arnau            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
-int strString(char ** tab)
+
+#include <unistd.h>
+#include <fcntl.h>
+
+#define BUFFER_SIZE 1024
+
+int main(int argc, char **argv)
 {
-    int i;
+    int fd;
+    int ret;
+    char buffer[BUFFER_SIZE];
 
-    i = 0;
-    while (tab[i] != 0)
-        i++;
-    return i;
-}
+    if (argc < 2)
+    {
+        write(2, "File name missing\n", 18);
+        return 1;
+    }
+    if (argc > 2)
+    {
+        write(2, "Too many arguments\n", 19);
+        return 1;
+    }
+    fd = open(argv[1], O_RDONLY);
+    if (fd < 0)
+    {
+        write(2, "Cannot read file\n", 16);
+        return 1;
+    }
+    while ((ret = read(fd, buffer, BUFFER_SIZE)) > 0)
+        write(1, buffer, ret);
 
-int letterCount(char *tab)
-{
-    int i;
-
-    i = 0;
-    while (tab[i] != 0)
-        i++;
-    return i;
-}
-
-int hasFourLetters(char *tab)
-{
-    if (letterCount(tab) >= 4)
-        return (1);
+    close(fd);
     return (0);
 }
-*/
-int	ft_count_if(char **tab, int (*f)(char *))
-{
-	int	count;
-	int	i;
-
-	if (!tab)
-		return (0);
-	count = 0;
-	i = -1;
-	while (tab[++i])
-	{
-		if (f(tab[i]))
-			count++;
-	}
-	return (count);
-}
-/*
-int main(void)
-{
-    char *tab[] = {"hola", "mundo", "te", 0};
-    printf("%d", ft_count_if(tab, &hasFourLetters));
-    return (0);
-}
-*/
