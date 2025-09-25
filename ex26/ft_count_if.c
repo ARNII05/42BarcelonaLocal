@@ -9,34 +9,7 @@
 /*   Updated: 2025/09/25 10:38:26 by arnau            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
-int strString(char ** tab)
-{
-    int i;
 
-    i = 0;
-    while (tab[i] != 0)
-        i++;
-    return i;
-}
-
-int letterCount(char *tab)
-{
-    int i;
-
-    i = 0;
-    while (tab[i] != 0)
-        i++;
-    return i;
-}
-
-int hasFourLetters(char *tab)
-{
-    if (letterCount(tab) >= 4)
-        return (1);
-    return (0);
-}
-*/
 int	ft_count_if(char **tab, int (*f)(char *))
 {
 	int	count;
@@ -51,13 +24,5 @@ int	ft_count_if(char **tab, int (*f)(char *))
 		if (f(tab[i]))
 			count++;
 	}
-	return (count);
+    return (count);
 }
-/*
-int main(void)
-{
-    char *tab[] = {"hola", "mundo", "te", 0};
-    printf("%d", ft_count_if(tab, &hasFourLetters));
-    return (0);
-}
-*/
