@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 
-int strlength(char *c)
+int strlength(const char *c)
 {
     int i;
 
@@ -22,36 +22,45 @@ int strlength(char *c)
     return (i);
 }
 
-char *contains(char *big, char *little, int len)
+void *ft_memmove(void *dest, const void *src, unsigned int n)
 {
-    int i;
-    int j;
-    int length;
-    int count;
+    unsigned char *d;
+    unsigned char *s;
+    unsigned int i;
+    int a;
 
+    s = (unsigned char *)src;
+    d = (unsigned char *)dest;
     i = 0;
-    length = strlength(little);
-    if (!*little)
-        return (big);
-    while (big[i] != 0 && i < len)
+    a = n - 1;
+    if (d == s || n == 0)
+        return dest;
+    if (d < s)
     {
-        j = 0;
-        count = 0;
-        while (big[i + j] != 0 && little[j] != 0)
+        while (i < n)
         {
-            if (big[i + j] == little[j])
-                count++;
-            j++;
+            d[i] = s[i];
+            i++;
         }
-        if (count == length)
-            return (&big[i]);
-        i++;
     }
-    return (0);
+    else
+    {
+        while (a >= 0)
+        {
+            d[a] = s[a];
+            a--;
+        }
+    }
+
+    return dest;
 }
 
-int main(void)
-{
-    printf("%s", contains("hola mundo", "mundo", 10));
-    printf("\n");
+int main() {z
+    char str[20] = "Hola mundo";
+
+    char *res = ft_memmove(str + 5, str, 4); 
+
+    printf("str: %s\n", str);
+    printf("res apunta a: %s\n", res); 
+    return 0;
 }

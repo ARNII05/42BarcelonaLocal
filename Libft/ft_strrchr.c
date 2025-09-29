@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 
-int strlength(char *c)
+int strlength(const char *c)
 {
     int i;
 
@@ -22,36 +22,24 @@ int strlength(char *c)
     return (i);
 }
 
-char *contains(char *big, char *little, int len)
+char *strrchr(const char *str, int c)
 {
+    int len;
     int i;
-    int j;
-    int length;
-    int count;
 
-    i = 0;
-    length = strlength(little);
-    if (!*little)
-        return (big);
-    while (big[i] != 0 && i < len)
+    len = strlength(str);
+    i = len;
+    while (i >= 0)
     {
-        j = 0;
-        count = 0;
-        while (big[i + j] != 0 && little[j] != 0)
-        {
-            if (big[i + j] == little[j])
-                count++;
-            j++;
-        }
-        if (count == length)
-            return (&big[i]);
-        i++;
+        if (c == str[i])
+            return (char *)(str + i);
+        i--;
     }
     return (0);
 }
 
 int main(void)
 {
-    printf("%s", contains("hola mundo", "mundo", 10));
+    printf("%s", strrchr("hola mundo", 'a'));
     printf("\n");
 }
