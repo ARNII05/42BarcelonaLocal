@@ -33,7 +33,7 @@ char *contains(char *big, char *little, int len)
     length = strlength(little);
     if (!*little)
         return (big);
-    while (big[i] != 0 && i <= len)
+    while (big[i] != 0 && i < len)
     {
         j = 0;
         count = 0;
@@ -52,6 +52,6 @@ char *contains(char *big, char *little, int len)
 
 int main(void)
 {
-    printf("%s", contains("hola mundo", "mundo", 5));
+    printf("%s", contains("hola mundo", "mundo", 10));
     printf("\n");
 }
