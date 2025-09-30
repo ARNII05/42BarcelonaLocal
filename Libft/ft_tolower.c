@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-char ft_tolower(char c)
+char ft_tolower(int c)
 {
     if(c >= 65 && c <= 90)
         c+=32;

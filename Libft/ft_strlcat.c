@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/29 11:50:26 by arnau             #+#    #+#             */
-/*   Updated: 2025/09/29 11:50:26 by arnau            ###   ########.fr       */
+/*   Created: 2025/09/30 12:31:26 by arnau             #+#    #+#             */
+/*   Updated: 2025/09/30 12:31:26 by arnau            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strncmp(const char *s1, const char *s2, size_t n)
+size_t ft_strlcat(char *dest, const char *src, size_t size)
 {
-    size_t i = 0;
+    size_t src_len;
+	size_t dest_len;
+	size_t i;
 
-    if (n == 0)
-        return 0;
-    while (i < n && s1[i] && s2[i] && (unsigned char)s1[i] == (unsigned char)s2[i])
-        i++;
-    if (i == n)
-        return 0; 
-    return (unsigned char)s1[i] - (unsigned char)s2[i];
+	src_len = ft_strlen(src);
+	dest_len = ft_strlen(dest);
+	i = 0;
+	if (size <= dest_len)
+		return (src_len + size);
+	while (src[i] != 0 && dest_len + i < size - 1)
+	{
+		dest[dest_len + i] = src[i];
+		i++;
+	}
+	dest[dest_len + i] = '\0';
+	return (src_len + dest_len);
 }

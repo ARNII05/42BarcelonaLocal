@@ -10,17 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int strlength(const char *c)
-{
-    int i;
-
-    i = 0;
-    while(c[i] != 0)
-        i++;
-    return (i);
-}
+#include "libft.h"
 
 char *ft_strchr(const char *string, int c)
 {
@@ -28,7 +18,7 @@ char *ft_strchr(const char *string, int c)
     int i;
 
     i = 0;
-    len = strlength(string) + 1;
+    len = ft_strlen(string) + 1;
     while (i < len)
     {
         if (string[i] == c)

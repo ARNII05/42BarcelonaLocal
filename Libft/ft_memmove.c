@@ -10,33 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-int strlength(const char *c)
-{
-    int i;
-
-    i = 0;
-    while(c[i] != 0)
-        i++;
-    return (i);
-}
-
-void *ft_memmove(void *dest, const void *src, unsigned int n)
+void *ft_memmove(void *dest, const void *src, size_t n)
 {
     unsigned char *d;
     unsigned char *s;
-    unsigned int i;
-    int a;
+    size_t i;
 
     s = (unsigned char *)src;
     d = (unsigned char *)dest;
-    i = 0;
-    a = n - 1;
     if (d == s || n == 0)
         return dest;
     if (d < s)
     {
+        i = 0;
         while (i < n)
         {
             d[i] = s[i];
@@ -45,10 +33,11 @@ void *ft_memmove(void *dest, const void *src, unsigned int n)
     }
     else
     {
-        while (a >= 0)
+        i = n;
+        while (i > 0)
         {
-            d[a] = s[a];
-            a--;
+            d[i - 1] = s[i - 1];
+            i--;
         }
     }
 

@@ -10,24 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int strlength(const char *c)
-{
-    int i;
-
-    i = 0;
-    while(c[i] != 0)
-        i++;
-    return (i);
-}
+#include "libft.h"
 
 char *ft_strrchr(const char *str, int c)
 {
     int len;
     int i;
 
-    len = strlength(str);
+    len = ft_strlen(str);
     i = len;
     while (i >= 0)
     {

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-int ft_isalpha(char c)
+int ft_isalpha(int c)
 {
     if(c >= 65 && c <= 90)
         return (1);

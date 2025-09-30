@@ -10,17 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-unsigned int strlen(unsigned char *c)
-{
-    unsigned int i;
-
-    i = 0;
-    while(c[i] != 0)
-        i++;
-    return (i);
-}
+#include "libft.h"
 
 void    *ft_memchr(const void* ptr, int ch, size_t count)
 {
@@ -29,7 +19,7 @@ void    *ft_memchr(const void* ptr, int ch, size_t count)
 
     a = (unsigned char *)ptr;
     i = 0;
-    while (i < strlen(a) + 1 && i < count)
+    while (i < count)
     {
         if (a[i] == ch)
             return (a + i);
