@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 
-int strlength(char *c)
+int strlen(char *c)
 {
     int i;
 
@@ -30,7 +30,7 @@ char *ft_strnstr(char *big, char *little, int len)
     int count;
 
     i = 0;
-    length = strlength(little);
+    length = strlen(little);
     if (!*little)
         return (big);
     while (big[i] != 0 && i < len)
