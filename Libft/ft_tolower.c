@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 
-char lowerCase(char c)
+char ft_tolower(char c)
 {
     if(c >= 65 && c <= 90)
         c+=32;

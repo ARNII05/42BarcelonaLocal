@@ -22,7 +22,7 @@ int strlength(const char *c)
     return (i);
 }
 
-char *strchr(const char *string, int c)
+char *ft_strchr(const char *string, int c)
 {
     int len;
     int i;
@@ -36,10 +36,4 @@ char *strchr(const char *string, int c)
         i++;
     }
     return (0);
-}
-
-int main() {
-
-    printf("%s\n", strchr("hola buenas tardes", 'u'));
-    return 0;
 }

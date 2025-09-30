@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 
-char upperCase(char c)
+char ft_toupper(char c)
 {
     if(c >= 97 && c <= 122)
         c-=32;

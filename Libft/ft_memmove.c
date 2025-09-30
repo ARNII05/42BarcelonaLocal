@@ -54,13 +54,3 @@ void *ft_memmove(void *dest, const void *src, unsigned int n)
 
     return dest;
 }
-
-int main() {z
-    char str[20] = "Hola mundo";
-
-    char *res = ft_memmove(str + 5, str, 4); 
-
-    printf("str: %s\n", str);
-    printf("res apunta a: %s\n", res); 
-    return 0;
-}

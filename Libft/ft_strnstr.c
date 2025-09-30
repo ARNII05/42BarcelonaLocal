@@ -22,7 +22,7 @@ int strlength(char *c)
     return (i);
 }
 
-char *contains(char *big, char *little, int len)
+char *ft_strnstr(char *big, char *little, int len)
 {
     int i;
     int j;
@@ -48,10 +48,4 @@ char *contains(char *big, char *little, int len)
         i++;
     }
     return (0);
-}
-
-int main(void)
-{
-    printf("%s", contains("hola mundo", "mundo", 10));
-    printf("\n");
 }

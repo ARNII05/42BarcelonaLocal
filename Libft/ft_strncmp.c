@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 
-int strCompare(char *c, char *a)
+int ft_strcmp(char *c, char *a)
 {
     while (*c && *a && c == a)
     {

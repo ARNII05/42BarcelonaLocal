@@ -22,7 +22,7 @@ int strlength(const char *c)
     return (i);
 }
 
-char *strrchr(const char *str, int c)
+char *ft_strrchr(const char *str, int c)
 {
     int len;
     int i;
@@ -36,10 +36,4 @@ char *strrchr(const char *str, int c)
         i--;
     }
     return (0);
-}
-
-int main(void)
-{
-    printf("%s", strrchr("hola mundo", 'a'));
-    printf("\n");
 }

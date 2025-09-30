@@ -12,9 +12,9 @@
 
 #include <stdio.h>
 
-int asciiChar(char c)
+int ft_isascii(char c)
 {
-    if(c >= 32 && c <= 126)
+    if(c >= 0 && c <= 127)
         return (1);
     return (0);
 }

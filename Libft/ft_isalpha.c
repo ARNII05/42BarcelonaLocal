@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 
-int isletter(char c)
+int ft_isalpha(char c)
 {
     if(c >= 65 && c <= 90)
         return (1);
