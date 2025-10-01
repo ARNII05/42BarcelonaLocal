@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/29 11:50:26 by arnau             #+#    #+#             */
-/*   Updated: 2025/09/29 11:50:26 by arnau            ###   ########.fr       */
+/*   Created: 2025/09/01 11:52:26 by arnau             #+#    #+#             */
+/*   Updated: 2025/09/01 11:52:26 by arnau            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t ft_strlen(const char *c)
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
+    char *sub;
     size_t i;
 
+    if (!s)
+        return (0);
+    len = ft_strlen(s);
+    if (start >= len)
+        len = 0;
+    if (len > len - start)
+        len = ft_strlen(s); 
+    sub = malloc(len + 1);
+    if (!sub)
+        return (0);
     i = 0;
-    while(c[i] != 0)
+    while (i < len && s[start + i])
+    {
+        sub[i] = s[start + i];
         i++;
-    return (i);
+    }
+    sub[i] = '\0';
+    return sub;
 }
