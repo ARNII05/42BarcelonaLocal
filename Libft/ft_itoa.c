@@ -14,7 +14,7 @@
 
 static	int	count_char(int num)
 {
-    int	count;
+	int	count;
 
 	count = 0;
 	if (num != 0)
