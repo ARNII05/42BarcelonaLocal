@@ -14,7 +14,7 @@
 
 void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	t_list *actual_node;
+	t_list	*actual_node;
 
 	actual_node = *alst;
 	if (*alst)

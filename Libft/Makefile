@@ -36,10 +36,26 @@ MY_SOURCES = ft_isdigit.c\
              ft_strrchr.c\
              ft_split.c
 
-OBJS = $(MY_SOURCES:.c=.o)
+BONUS_SOURCES = ft_lstnew.c\
+                ft_lstadd_front.c\
+                ft_lstsize.c\
+                ft_lstlast.c\
+                ft_lstadd_back.c\
+                ft_lstdelone.c\
+                ft_lstclear.c\
+                ft_lstiter.c\
+                ft_lstmap.c
 
-$(NAME) : $(OBJS)
+OBJS = $(MY_SOURCES:.c=.o)
+BONUS_OBJS = $(BONUS_SOURCES:.c=.o)
+
+$(NAME): $(OBJS)
 	@ar crs $(NAME) $(OBJS)
+	@echo "✅ libft.a created"
+
+bonus: $(BONUS_OBJS)
+	@ar rcs $(NAME) $(BONUS_OBJS)
+	@echo "🎁 Bonus functions added to libft.a"
 
 all: $(NAME)
 
@@ -47,7 +63,7 @@ all: $(NAME)
 	@$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
 	@$(RM) $(NAME)
@@ -60,4 +76,4 @@ MAIN = main.c
 test: $(NAME)
 	$(CC) $(CFLAGS) $(MAIN) -L. -lft -o $(TEST)
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test bonus

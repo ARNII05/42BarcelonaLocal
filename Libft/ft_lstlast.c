@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                  					:+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,18 +14,18 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list *p;
+	t_list	*p;
 
-		p = lst;
-		if (p == NULL)
-			return (NULL);
+	p = lst;
+	if (p == NULL)
+		return (NULL);
+	if (p->next == NULL)
+		return (p);
+	while (p)
+	{
 		if (p->next == NULL)
 			return (p);
-		while (p)
-		{
-			if (p->next == NULL)
-				return (p);
-			p = p->next;
-		}
-		return (p);
+		p = p->next;
+	}
+	return (p);
 }
