@@ -1,5 +1,5 @@
 NAME = libft.a
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
@@ -50,23 +50,21 @@ OBJS = $(MY_SOURCES:.c=.o)
 BONUS_OBJS = $(BONUS_SOURCES:.c=.o)
 
 $(NAME): $(OBJS)
-	@ar crs $(NAME) $(OBJS)
-	@echo "✅ libft.a created"
+	ar crs $(NAME) $(OBJS)
 
 bonus: $(BONUS_OBJS)
-	@ar rcs $(NAME) $(BONUS_OBJS)
-	@echo "🎁 Bonus functions added to libft.a"
+	ar rcs $(NAME) $(BONUS_OBJS)
 
 all: $(NAME)
 
-%.o : %.c
-	@$(CC) $(CFLAGS) -c -o $@ $<
+%.o : %.c Makefile libft.h
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	@$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
