@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_if.c                                   :+:      :+:    :+:      */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/25 10:38:26 by arnau             #+#    #+#             */
-/*   Updated: 2025/09/25 10:38:26 by arnau            ###   ########.fr       */
+/*   Created: 2025/09/29 16:19:26 by arnau             #+#    #+#             */
+/*   Updated: 2025/09/29 16:19:26 by arnau            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_count_if(char **tab, int (*f)(char *))
-{
-	int	count;
-	int	i;
+#ifndef 	PRINTF_H
+# define PRINTF_H
 
-	if (!tab)
-		return (0);
-	count = 0;
-	i = -1;
-	while (tab[++i])
-	{
-		if (f(tab[i]))
-			count++;
-	}
-    return (count);
-}
+# include <stdlib.h>
+# include <unistd.h>
+
+int ft_printf(char const *, ...);
+
+#endif
