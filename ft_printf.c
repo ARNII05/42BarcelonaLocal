@@ -15,26 +15,26 @@
 
 static int choose_format(char c)
 {
-		if (c == 'c')
-   return (1);
-  else if (c == 's')
-   return (2);
-		else if (c == 'p')
-   return (3);
-		else if (c == 'd')
-   return (4);
-		else if (c == 'i')
-   return (5);
-		else if (c == 'u')
-   return (6);
-		else if (c == 'x')
-   return (7);
-		else if (c == 'X')
-   return (8);
-		else if (c == '%')
-   return (9);
-  else
-   return (0);
+	if (c == 'c')
+		return (1);
+	else if (c == 's')
+		return (2);
+	else if (c == 'p')
+		return (3);
+	else if (c == 'd')
+		return (4);
+	else if (c == 'i')
+		return (5);
+	else if (c == 'u')
+		return (6);
+	else if (c == 'x')
+		return (7);
+	else if (c == 'X')
+		return (8);
+	else if (c == '%')
+		return (9);
+	else
+		return (0);
 }
 
 static void write_correct_arg(int n, va_list args)
