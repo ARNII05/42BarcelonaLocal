@@ -1,32 +1,27 @@
 NAME = libftprintf.a
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-RM = rm -rf
 
-MY_SOURCES = ft_printf.c\
-             
-OBJS = $(MY_SOURCES:.c=.o)
+SRC = ft_printf.c
+OBJ = $(SRC:.c=.o)
 
-$(NAME): $(OBJS)
-	ar crs $(NAME) $(OBJS)
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
-%.o : %.c Makefile libft.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+$(NAME): $(OBJ)
+	make -C $(LIBFT_DIR)
+	cp $(LIBFT) $(NAME)
+	ar rcs $(NAME) $(OBJ)
 
 clean:
-	$(RM) $(OBJS) 
+	rm -f $(OBJ)
+	make -C $(LIBFT_DIR) clean
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
-
-TEST = test_trim.exe
-MAIN = main.c
-
-test: $(NAME)
-	$(CC) $(CFLAGS) $(MAIN) -L. -lft -o $(TEST)
-
-.PHONY: all clean fclean re test bonus
