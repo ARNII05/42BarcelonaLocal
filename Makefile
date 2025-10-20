@@ -13,7 +13,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C $(LIBFT_DIR)
-	cp $(LIBFT) $(NAME)
 	ar rcs $(NAME) $(OBJ)
 
 clean:
