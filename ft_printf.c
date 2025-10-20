@@ -13,28 +13,32 @@
 #include "Libft/libft.h"
 #include "ft_printf.h"
 
+static hexa_void(const void *s)
+{
+	//El puntero void * dado como argumento se imprime en formato hexadecimal.
+}
+
+static hexa_nbr(const void *s)
+{
+	//El puntero void * dado como argumento se imprime en formato hexadecimal.
+}
+
 static void choose_format(char c, va_list args)
 {
 	if (c == 'c' || c == '%')
 		ft_putchar_fd(va_arg(args, int), 1);
+	else if (c == 'd' || c == 'i')
+		ft_putnbr_fd(va_arg(args, char *), 1);
 	else if (c == 's')
 		ft_putstr_fd(va_arg(args, char *), 1);
-	/*
-	else if (c == 'p')
-		ft_putstr_fd(va_arg(args, char *), 1);
-	else if (c == 'd')
-		ft_putstr_fd(va_arg(args, char *), 1);
-	else if (c == 'i')
-		ft_putstr_fd(va_arg(args, char *), 1);
 	else if (c == 'u')
+		ft_putstr_fd(va_arg(args, char *), 1);
+	else if (c == 'p')
 		ft_putstr_fd(va_arg(args, char *), 1);
 	else if (c == 'x')
 		ft_putstr_fd(va_arg(args, char *), 1);
 	else if (c == 'X')
 		ft_putstr_fd(va_arg(args, char *), 1);
-	else if (c == '%')
-		ft_putstr_fd(va_arg(args, char *), 1);
-	*/
 }
 
 /*
