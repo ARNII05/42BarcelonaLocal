@@ -73,7 +73,6 @@ static int ft_putnbr(int n)
 		counter += ft_putnbr(n / 10);
 	c = (n % 10) + '0';
 	counter += ft_putchar(c);
-
 	return (counter);
 }
 
@@ -109,10 +108,7 @@ static int exctract_format(char const *format, va_list *args)
 				count_char += choose_format(*format, args);
 		}
 		else
-		{
-			ft_putchar_fd(*format, 1);
-			count_char++;
-		}
+			count_char += ft_putchar(*format);
 		format++;
 	}
 	return (count_char);
