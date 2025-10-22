@@ -13,117 +13,118 @@
 #include "Libft/libft.h"
 #include "ft_printf.h"
 
-static char *transform_letters(char *str, char type)
+static int ft_putnbr_base(unsigned int nbr, char *base)
 {
-	char 	*new_str;
-	int	i;
-	
-	i = 0;
-	while (str[i] != 0)
-	{
-		if (type == 'u')
-			new_str[i] = ft_toupper(new);
-	}
+	unsigned int len;
+	int counter;
+
+	len = ft_strlen(base);
+	counter = 0;
+	if (nbr >= len)
+		counter += ft_putnbr_base(nbr / len, base);
+	write(1, &base[nbr % len], 1);
+	counter++;
+	return (counter);
 }
 
-static void	ft_putnbr_base(int nbr, char type)
+static int hexa_void(const void *s)
 {
-	int		i;
-	long	n;
-	char	new_str[32];
+	//El puntero void * dado como argumento se imprime en formato hexadecimal.
+}
 
-	strlen = ft_strlen(base);
+static int	ft_putchar(char c)
+{
+		write(1, &c, 1);
+		return (1);
+}
+
+static int	ft_putstr(char *s)
+{
+	int	i;
+
 	i = 0;
-	n = nbr;
-	if (n < 0)
+	while (s[i] != 0)
 	{
-		write(1, "-", 1);
-		n = -n;
-	}
-	if (n == 0)
-		write(1, &base[0], 1);
-	while (n > 0)
-	{
-		new_str[i] = base[n % strlen];
-		n /= ft_strlen(base);
+		write(1, &s[i], 1);
 		i++;
 	}
-	while (i--)
-		write(1, transform_letters(&new_str[i])[i], 1);
+	return (i);
 }
 
-static void	nbr_no_sign(int n, int fd)
+static int ft_putnbr(int n)
 {
-	char	c;
+	int counter;
+	char c;
 
+	counter = 0;
 	if (n == -2147483648)
 	{
-		ft_putstr_fd("2147483648", fd);
-		return ;
+		ft_putchar('-');
+		ft_putstr("2147483648");
+		return (11); 
 	}
 	else if (n < 0)
 	{
-		ft_putnbr_fd(-n, fd);
-		return ;
+		counter += ft_putchar('-');
+		counter += ft_putnbr(-n);
+		return counter;
 	}
 	if (n >= 10)
-		ft_putnbr_fd(n / 10, fd);
+		counter += ft_putnbr(n / 10);
 	c = (n % 10) + '0';
-	ft_putchar_fd(c, fd);
+	counter += ft_putchar(c);
+
+	return (counter);
 }
 
-static hexa_void(const void *s)
-{
-	//El puntero void * dado como argumento se imprime en formato hexadecimal.
-}
-
-static hexa_nbr(const void *s)
-{
-	//El puntero void * dado como argumento se imprime en formato hexadecimal.
-}
-
-static void choose_format(char c, va_list args)
+static int choose_format(char c, va_list *args)
 {
 	if (c == 'c' || c == '%')
-		ft_putchar_fd(va_arg(args, int), 1);
+		return ft_putchar(va_arg(*args, int));
 	else if (c == 'd' || c == 'i')
-		ft_putnbr_fd(va_arg(args, int), 1);
+		return ft_putnbr(va_arg(*args, int));
 	else if (c == 's')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		return ft_putstr(va_arg(*args, char *));
+	else if (c == 'p') //Not done 
+		return ft_putstr(va_arg(*args, char *));
 	else if (c == 'u')
-		nbr_no_sign(va_arg(args, int), 1);
-	else if (c == 'p')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		return ft_putnbr_base(va_arg(*args, int), "0123456789");
 	else if (c == 'x')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		return ft_putnbr_base(va_arg(*args, unsigned int), "0123456789ABCDEF");
 	else if (c == 'X')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		return ft_putnbr_base(va_arg(*args, unsigned int), "0123456789abcdef");
 }
 
-static int exctract_format(char const *format, va_list args)
+static int exctract_format(char const *format, va_list *args)
 {
 	int count_char;
 
+	count_char = 0;
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++; 
 			if (*format)
-				choose_format(*format, args);
+				count_char += choose_format(*format, args);
 		}
 		else
+		{
 			ft_putchar_fd(*format, 1);
+			count_char++;
+		}
 		format++;
-		count_char++;
 	}
 	return (count_char);
 }
 
-int ft_printf(char const *format, ...)
+int	ft_printf(char const *format, ...)
 {
-	va_list args;
+	va_list	args;
+	int		result;
+
 	va_start(args, format);
+	result = extract_format(format, &args);
 	va_end(args);
-	return (extract_fornat(*format, args));
+	return (result);
 }
