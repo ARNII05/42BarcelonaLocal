@@ -34,7 +34,9 @@ MY_SOURCES = ft_isdigit.c\
              ft_putnbr_fd.c\
              ft_itoa.c\
              ft_strrchr.c\
-             ft_split.c
+             ft_split.c\
+			 ft_strmapi.c\
+			 ft_striteri.c
 
 BONUS_SOURCES = ft_lstnew.c\
                 ft_lstadd_front.c\
