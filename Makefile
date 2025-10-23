@@ -3,7 +3,10 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = ft_printf.c
+SRC = ft_printf.c\
+ft_printable.c\
+ft_print_hexa.c
+
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = libft

@@ -18,5 +18,10 @@
 # include <stdarg.h>
 
 int	ft_printf(char const *format, ...);
+int	ft_putnbr(int n);
+int	ft_putstr(char *s);
+int	ft_putchar(char c);
+int	ft_hexa_base(unsigned int nbr, char *base);
+int	hexa_void(const void *s, char *base);
 
 #endif
