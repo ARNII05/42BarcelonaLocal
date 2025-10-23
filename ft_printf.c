@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Libft/libft.h"
 #include "ft_printf.h"
 
 static int	choose_format(char c, va_list *args)
@@ -21,8 +20,10 @@ static int	choose_format(char c, va_list *args)
 		return (ft_putnbr(va_arg(*args, int)));
 	else if (c == 's')
 		return (ft_putstr(va_arg(*args, char *)));
-	else if (c == 'p') //Not done 
+	/*
+	else if (c == 'p') 
 		return (hexa_void(va_arg(*args, const void *), "0123456789ABCDEF"));
+	*/
 	else if (c == 'u')
 		return (ft_hexa_base(va_arg(*args, unsigned int), "0123456789"));
 	else if (c == 'X')
@@ -59,7 +60,7 @@ int	ft_printf(char const *format, ...)
 	int		result;
 
 	va_start(args, format);
-	result = extract_format(format, &args);
+	result = exctract_format(format, &args);
 	va_end(args);
 	return (result);
 }
