@@ -20,10 +20,8 @@ static int	choose_format(char c, va_list *args)
 		return (ft_putnbr(va_arg(*args, int)));
 	else if (c == 's')
 		return (ft_putstr(va_arg(*args, char *)));
-	/*
-	else if (c == 'p') 
-		return (hexa_void(va_arg(*args, const void *), "0123456789ABCDEF"));
-	*/
+	else if (c == 'p')
+		return (hexa_void(va_arg(*args, unsigned long *), "0123456789abcdef"));
 	else if (c == 'u')
 		return (ft_hexa_base(va_arg(*args, unsigned int), "0123456789"));
 	else if (c == 'X')

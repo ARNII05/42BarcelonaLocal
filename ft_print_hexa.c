@@ -22,14 +22,28 @@ int	ft_hexa_base(unsigned int nbr, char *base)
 	counter = 0;
 	if (nbr >= len)
 		counter += ft_hexa_base(nbr / len, base);
-	write(1, &base[nbr % len], 1);
-	counter++;
+	counter += ft_putchar(base[nbr % len]);
 	return (counter);
 }
 
-/*
-int	hexa_void(const void *s, char *base)
+static int	print_hex_recursive(unsigned long n, char *base)
 {
-	return (0);
+	int	counter;
+
+	counter = 0;
+	if (n >= 16)
+		counter += print_hex_recursive(n / 16, base);
+	counter += ft_putchar(base[n % 16]);
+	return (counter);
 }
-*/
+
+int	hexa_void(unsigned long *ptr, char *base)
+{
+	int	counter;
+
+	counter = 0;
+	if (!ptr)
+		return (ft_putstr("(nil)"));
+	counter += ft_putstr("0x");
+	return (print_hex_recursive((unsigned long)ptr, base) + counter);
+}
