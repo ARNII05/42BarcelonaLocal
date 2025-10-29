@@ -23,7 +23,7 @@ void readFileAndJoinResidue(int fd)
 
 char *get_next_line(int fd)
 {
- char *actualLine;
+ 	char *actualLine;
 
 	readFileAndJoinResidue(fd);
 
