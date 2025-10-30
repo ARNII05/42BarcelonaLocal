@@ -81,7 +81,7 @@ static char	*readFile(int fd)
 
 char	*get_next_line(int fd) 
 {
- char *actualLine;
+ 	char *actualLine;
 
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (0);
