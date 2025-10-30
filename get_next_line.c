@@ -12,20 +12,79 @@
 
 #include "get_next_line.h"
 
-void readFileAndJoinResidue(int fd)
+static unsigned int	extractIndex(const char *string, int c)
 {
-	static char *residue;
-	char buffer[BUFFER_SIZE + 1];
-	ssize_t n;
+	unsigned int	len;
+	int	i;
 
-	n = read(fd, buffer, BUFFER_SIZE);
+	i = 0;
+	len = ft_strlen(string) + 1;
+	while (i < len)
+	{
+		if (string[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
 }
 
-char *get_next_line(int fd)
+static void	update_residue(char **residuo, int index)
+{
+	char	*tmp;
+
+	tmp = ft_substr(*residuo, index + 1, ft_strlen(*residuo));
+	free(*residuo);
+	*residuo = tmp;
+}
+
+char *extractLine(char **residue)
+{
+	int index;
+	char *line;
+	
+	index = extractIndex(*residue, '\n');
+	if (index >= 0)
+	{
+		line = ft_substr(*residue, 0, index + 1);
+		update_residue(residue, index);
+	}
+	else
+	{
+		line = ft_strdup(*residue);
+		free(*residue);
+		*residue = NULL;
+	}
+	return (line);
+}
+
+static char	*readFile(int fd)
+{
+	char buffer[BUFFER_SIZE + 1];
+	static char *residue;
+	ssize_t n;
+	char *line;
+
+	while (1)
+	{
+		if (residue && extractIndex(residue, '\n') != -1)
+			return (extractLine(&residue));
+		n = read(fd, buffer, BUFFER_SIZE);
+		if (n <= 0)
+			break;
+		buffer[n] = '\0';
+		residue = ft_strjoin(residue, buffer);
+	}
+	if (residue)
+  return extract_line(&residue);
+ return NULL;
+}
+
+char	*get_next_line(int fd) 
 {
  char *actualLine;
 
-	readFileAndJoinResidue(fd);
-
+	if (fd < 0 || BUFFER_SIZE < 0)
+		return (0);
+	actualLine = readFile(fd);
 	return (actualLine);
 }
