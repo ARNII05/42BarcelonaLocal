@@ -60,7 +60,7 @@ char	*extract_line(char **residue)
 static char	*read_file(int fd)
 {
 	static char			*residue;
-	char				buffer[BUFFER_SIZE + 1];
+	char			buffer[BUFFER_SIZE + 1];
 	char				*line;
 	ssize_t				n;
 
