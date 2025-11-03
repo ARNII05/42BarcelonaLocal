@@ -12,16 +12,16 @@
 
 #include "get_next_line.h"
 
-static unsigned int	extractIndex(const char *string, int c)
+static unsigned int	extract_index(const char *str, int c)
 {
 	unsigned int	len;
-	int	i;
+	int				i;
 
 	i = 0;
-	len = ft_strlen(string) + 1;
+	len = ft_strlen(str) + 1;
 	while (i < len)
 	{
-		if (string[i] == c)
+		if (str[i] == c)
 			return (i);
 		i++;
 	}
@@ -37,11 +37,11 @@ static void	update_residue(char **residuo, int index)
 	*residuo = tmp;
 }
 
-char *extractLine(char **residue)
+char	*extract_line(char **residue)
 {
-	int index;
-	char *line;
-	
+	int		index;
+	char	*line;
+
 	index = extractIndex(*residue, '\n');
 	if (index >= 0)
 	{
@@ -57,12 +57,12 @@ char *extractLine(char **residue)
 	return (line);
 }
 
-static char	*readFile(int fd)
+static char	*read_file(int fd)
 {
-	char buffer[BUFFER_SIZE + 1];
-	static char *residue;
-	ssize_t n;
-	char *line;
+	static char			*residue;
+	char				buffer[BUFFER_SIZE + 1];
+	char				*line;
+	ssize_t				n;
 
 	while (1)
 	{
@@ -70,21 +70,21 @@ static char	*readFile(int fd)
 			return (extractLine(&residue));
 		n = read(fd, buffer, BUFFER_SIZE);
 		if (n <= 0)
-			break;
+			break ;
 		buffer[n] = '\0';
 		residue = ft_strjoin(residue, buffer);
 	}
 	if (residue)
-  return extract_line(&residue);
- return NULL;
+		return (extract_line(&residue));
+	return (0);
 }
 
-char	*get_next_line(int fd) 
+char	*get_next_line(int fd)
 {
- 	char *actualLine;
+	char	*line;
 
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (0);
-	actualLine = readFile(fd);
-	return (actualLine);
+	line = readFile(fd);
+	return (line);
 }

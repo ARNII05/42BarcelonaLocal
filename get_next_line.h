@@ -17,15 +17,16 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 32
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
 
-char *get_next_line(int fd);
+# endif
+
+char	*get_next_line(int fd);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *c);
 char	*ft_strjoin(char const *s1, char const *s2);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif
