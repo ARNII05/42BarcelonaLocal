@@ -75,8 +75,8 @@ static char	*readFile(int fd)
 		residue = ft_strjoin(residue, buffer);
 	}
 	if (residue)
-  return extract_line(&residue);
- return NULL;
+  		return extract_line(&residue);
+ 	return NULL;
 }
 
 char	*get_next_line(int fd) 
