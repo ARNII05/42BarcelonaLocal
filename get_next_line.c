@@ -12,10 +12,10 @@
 
 #include "get_next_line.h"
 
-static unsigned int	extract_index(const char *str, int c)
+static int	extract_index(const char *str, int c)
 {
-	unsigned int	len;
-	int				i;
+	int	len;
+	int	i;
 
 	i = 0;
 	len = ft_strlen(str) + 1;
@@ -28,6 +28,33 @@ static unsigned int	extract_index(const char *str, int c)
 	return (-1);
 }
 
+static char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub;
+	size_t	s_len;
+	size_t	i;
+
+	if (!s)
+		return (0);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	sub = malloc(len + 1);
+	if (!sub)
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		sub[i] = s[start + i];
+		i++;
+	}
+	sub[i] = '\0';
+	return (sub);
+}
+
+/*
 static void	update_residue(char **residuo, int index)
 {
 	char	*tmp;
@@ -36,17 +63,21 @@ static void	update_residue(char **residuo, int index)
 	free(*residuo);
 	*residuo = tmp;
 }
+*/
 
-char	*extract_line(char **residue)
+static char	*extract_line(char **residue)
 {
 	int		index;
 	char	*line;
+	char	*tmp;
 
-	index = extractIndex(*residue, '\n');
+	index = extract_index(*residue, '\n');
 	if (index >= 0)
 	{
 		line = ft_substr(*residue, 0, index + 1);
-		update_residue(residue, index);
+		tmp = ft_substr(*residue, index + 1, ft_strlen(*residue));
+		free(*residue);
+		*residue = tmp;
 	}
 	else
 	{
@@ -61,13 +92,12 @@ static char	*read_file(int fd)
 {
 	static char			*residue;
 	char				buffer[BUFFER_SIZE + 1];
-	char				*line;
 	ssize_t				n;
 
 	while (1)
 	{
-		if (residue && extractIndex(residue, '\n') != -1)
-			return (extractLine(&residue));
+		if (residue && extract_index(residue, '\n') != -1)
+			return (extract_line(&residue));
 		n = read(fd, buffer, BUFFER_SIZE);
 		if (n <= 0)
 			break ;
@@ -83,8 +113,8 @@ char	*get_next_line(int fd)
 {
 	char	*line;
 
-	if (fd < 0 || BUFFER_SIZE < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	line = readFile(fd);
+	line = read_file(fd);
 	return (line);
 }
