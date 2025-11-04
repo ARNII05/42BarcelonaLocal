@@ -111,10 +111,7 @@ static char	*read_file(int fd)
 
 char	*get_next_line(int fd)
 {
-	char	*line;
-
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	line = read_file(fd);
-	return (line);
+	return (read_file(fd));
 }
