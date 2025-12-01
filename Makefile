@@ -20,7 +20,7 @@ all: $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 	
-$(NAME): $(OBJ) $(LIBFT) ft_printf.h
+$(NAME): $(OBJ) $(LIBFT) Makefile ft_printf.h
 	ar rcs $(NAME) $(OBJ)
 	ar x $(LIBFT)      
 	ar rcs $(NAME) *.o 
