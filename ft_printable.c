@@ -24,7 +24,7 @@ int	ft_putstr(char *s)
 
 	i = 0;
 	if (!s)
-		return (ft_putstr("NULL"));
+		return (ft_putstr("(null)"));
 	while (s[i] != 0)
 	{
 		write(1, &s[i], 1);
