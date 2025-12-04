@@ -39,7 +39,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	char	*str;
 	size_t	s1_len;
@@ -52,9 +52,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str = malloc(s1_len + s2_len + 1);
 	if (!str)
 		return (NULL);
-	memcpy(str, s1, s1_len);
-	memcpy(str + s1_len, s2, s2_len);
+	ft_memcpy(str, s1, s1_len);
+	ft_memcpy(str + s1_len, s2, s2_len);
 	str[s1_len + s2_len] = '\0';
+	free(s1);
 	return (str);
 }
 
@@ -66,8 +67,9 @@ char	*ft_strdup(const char *s)
 	len = ft_strlen(s);
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (0);
-	ft_strlcpy(str, s, len + 1);
+		return (NULL);
+	ft_memcpy(str, s, len);
+	str[len] = '\0';
 	return (str);
 }
 

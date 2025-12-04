@@ -32,10 +32,9 @@ static char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
 	size_t	s_len;
-	size_t	i;
 
 	if (!s)
-		return (0);
+		return (NULL);
 	s_len = ft_strlen(s);
 	if (start >= s_len)
 		return (ft_strdup(""));
@@ -43,16 +42,12 @@ static char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = s_len - start;
 	sub = malloc(len + 1);
 	if (!sub)
-		return (0);
-	i = 0;
-	while (i < len)
-	{
-		sub[i] = s[start + i];
-		i++;
-	}
-	sub[i] = '\0';
+		return (NULL);
+	ft_memcpy(sub, s + start, len);
+	sub[len] = '\0';
 	return (sub);
 }
+
 static char	*extract_line(char **residue)
 {
 	int		index;
@@ -76,30 +71,40 @@ static char	*extract_line(char **residue)
 	return (line);
 }
 
-static char	*read_file(int fd)
+static char *read_file(int fd, char **residue)
 {
-	static char			*residue;
-	char				buffer[BUFFER_SIZE + 1];
-	ssize_t				n;
+	char buffer[BUFFER_SIZE + 1];
+	ssize_t n;
 
 	while (1)
 	{
-		if (residue && extract_index(residue, '\n') != -1)
-			return (extract_line(&residue));
+		if (extract_index(*residue, '\n') != -1)
+			return (extract_line(residue));
 		n = read(fd, buffer, BUFFER_SIZE);
 		if (n <= 0)
-			break ;
+			break;
 		buffer[n] = '\0';
-		residue = ft_strjoin(residue, buffer);
+		*residue = ft_strjoin(*residue, buffer);
+		if (!*residue)
+			return (NULL);
 	}
-	if (residue)
-		return (extract_line(&residue));
-	return (0);
+	if (*residue && **residue)
+		return extract_line(residue);
+	free(*residue);
+	return (*residue = NULL, NULL);
 }
 
 char	*get_next_line(int fd)
 {
+	static char *residue;
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	return (read_file(fd));
+	if (!residue)
+	{
+		residue = ft_strdup("");
+		if (!residue)
+			return (NULL);
+	}
+	return (read_file(fd, &residue));
 }
