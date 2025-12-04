@@ -53,18 +53,6 @@ static char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub[i] = '\0';
 	return (sub);
 }
-
-/*
-static void	update_residue(char **residuo, int index)
-{
-	char	*tmp;
-
-	tmp = ft_substr(*residuo, index + 1, ft_strlen(*residuo));
-	free(*residuo);
-	*residuo = tmp;
-}
-*/
-
 static char	*extract_line(char **residue)
 {
 	int		index;
