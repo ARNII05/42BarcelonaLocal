@@ -22,22 +22,21 @@ size_t	ft_strlen(const char *c)
 	return (i);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t	i;
-	size_t	len;
+	unsigned char	*d;
+	unsigned char	*s;
+	size_t			i;
 
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
 	i = 0;
-	len = ft_strlen(src);
-	if (size < 1)
-		return (len);
-	while (src[i] != 0 && i < size - 1)
+	while (i < n)
 	{
-		dst[i] = src[i];
+		d[i] = s[i];
 		i++;
 	}
-	dst[i] = '\0';
-	return (len);
+	return (dest);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
