@@ -71,10 +71,10 @@ static char	*extract_line(char **residue)
 	return (line);
 }
 
-static char *read_file(int fd, char **residue)
+static char	*read_file(int fd, char **residue)
 {
-	char buffer[BUFFER_SIZE + 1];
-	ssize_t n;
+	ssize_t	n;
+	char	buffer[BUFFER_SIZE + 1];
 
 	while (1)
 	{
@@ -82,21 +82,21 @@ static char *read_file(int fd, char **residue)
 			return (extract_line(residue));
 		n = read(fd, buffer, BUFFER_SIZE);
 		if (n <= 0)
-			break;
+			break ;
 		buffer[n] = '\0';
 		*residue = ft_strjoin(*residue, buffer);
 		if (!*residue)
 			return (NULL);
 	}
 	if (*residue && **residue)
-		return extract_line(residue);
+		return (extract_line(residue));
 	free(*residue);
 	return (*residue = NULL, NULL);
 }
 
 char	*get_next_line(int fd)
 {
-	static char *residue;
+	static char	*residue;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
