@@ -71,27 +71,32 @@ static char	*extract_line(char **residue)
 	return (line);
 }
 
-static char	*read_file(int fd, char **residue)
+char	*read_file(int fd, char **residue)
 {
 	ssize_t	n;
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
 
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (free(buffer), NULL);
 	while (1)
 	{
 		if (extract_index(*residue, '\n') != -1)
-			return (extract_line(residue));
+			return (free(buffer), extract_line(residue));
 		n = read(fd, buffer, BUFFER_SIZE);
-		if (n <= 0)
+		if (n < 0)
+			return (free(buffer), free(*residue), *residue = NULL, NULL);
+		if (n == 0)
 			break ;
 		buffer[n] = '\0';
 		*residue = ft_strjoin(*residue, buffer);
 		if (!*residue)
-			return (NULL);
+			return (free(buffer), free(*residue), *residue = NULL, NULL);
 	}
+	free(buffer);
 	if (*residue && **residue)
 		return (extract_line(residue));
-	free(*residue);
-	return (*residue = NULL, NULL);
+	return (free(*residue), *residue = NULL, NULL);
 }
 
 char	*get_next_line(int fd)
@@ -99,7 +104,7 @@ char	*get_next_line(int fd)
 	static char	*residue;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
+		return (free(residue), residue = NULL, NULL);
 	if (!residue)
 	{
 		residue = ft_strdup("");
