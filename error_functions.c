@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   error_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-#include <stdio.h>
-#include <stdlib.h>
+static int	ft_isnotdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (0);
+	return (1);
+}
 
-char	*push_swap(int *nbrs);
-size_t	ft_strlen(const char *c);
-char	*ft_itoa(int n);
-int any_errors(int len, int nbr);
+static int exceeding_int(long nbr)
+{
+	return (nbr > 2147483647 || nbr < -2147483648);
+}
 
-#endif
+static int is_duplicate(int *nbr)
+{
+
+}
+
+int any_errors(int len, int *nbr)
+{
+	int i;
+	int n;
+
+	i = 0;
+	n = 0;
+	
+	n += ft_isnotdigit(nbr);
+	n += exceeding_int(nbr);
+	n += is_duplicate(&nbr);
+
+	return (n);
+}

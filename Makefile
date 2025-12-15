@@ -1,44 +1,32 @@
-NAME = libftprintf.a
-
+NAME = push_swap.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+RM = rm -rf
 
-SRC = ft_printf.c \
-      ft_printable.c \
-      ft_print_hexa.c
+MY_SOURCES = push_swap.c\utils.c\error_functions.c\ft_itoa.c\
+   
+OBJS = $(MY_SOURCES:.c=.o)
 
-OBJ = $(SRC:.c=.o)
-
-LIBFT_DIR = Libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
-MAIN = main.c
-OUTPUT = test
+$(NAME): $(OBJS)
+	ar crs $(NAME) $(OBJS)
 
 all: $(NAME)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
-	
-$(NAME): $(OBJ) $(LIBFT) Makefile ft_printf.h
-	ar rcs $(NAME) $(OBJ)
-	ar x $(LIBFT)      
-	ar rcs $(NAME) *.o 
-	rm -f *.o
-
-run: $(NAME)
-	$(CC) $(CFLAGS) $(MAIN) $(NAME) -o $(OUTPUT)
-	./$(OUTPUT)
+%.o : %.c Makefile push_swap.h
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJ)
-	$(MAKE) -C $(LIBFT_DIR) clean
+	$(RM) $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(OUTPUT)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re run
+TEST = test_trim.exe
+MAIN = main.c
+
+run: $(NAME)
+	$(CC) $(CFLAGS) $(MAIN) -L. -lft -o $(TEST)
+
+.PHONY: all clean fclean re test

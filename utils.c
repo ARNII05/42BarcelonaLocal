@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-#include <stdio.h>
-#include <stdlib.h>
+int	ft_isnotdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (0);
+	return (1);
+}
 
-char	*push_swap(int *nbrs);
-size_t	ft_strlen(const char *c);
-char	*ft_itoa(int n);
-int any_errors(int len, int nbr);
+size_t	ft_strlen(const char *c)
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	while (c[i] != 0)
+		i++;
+	return (i);
+}

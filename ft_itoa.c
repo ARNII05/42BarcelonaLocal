@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,55 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-#include <stdio.h>
-#include <stdlib.h>
+static	int	count_char(int num)
+{
+	int	count;
 
-char	*push_swap(int *nbrs);
-size_t	ft_strlen(const char *c);
-char	*ft_itoa(int n);
-int any_errors(int len, int nbr);
+	count = 0;
+	if (num != 0)
+	{
+		if (num < 0)
+		{
+			num = num *(-1);
+			count++;
+		}
+		while (num != 0)
+		{
+			num = num / 10;
+			count++;
+		}
+	}
+	else
+		count = 1;
+	return (count);
+}
 
-#endif
+char	*ft_itoa(int n)
+{
+	int			len;
+	char		*str;
+	long int	nbr;
+
+	len = count_char(n);
+	nbr = n;
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (0);
+	if (nbr < 0)
+	{
+		str[0] = '-';
+		nbr = -nbr;
+	}
+	if (nbr == 0)
+		str[0] = '0';
+	str[len--] = '\0';
+	while (nbr)
+	{
+		str[len] = ((nbr % 10) + '0');
+		nbr /= 10;
+		len--;
+	}
+	return (str);
+}
