@@ -1,5 +1,6 @@
 NAME = libftprintf.a
 
+RM = rm -fr
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
@@ -8,37 +9,29 @@ SRC = ft_printf.c \
       ft_print_hexa.c
 
 OBJ = $(SRC:.c=.o)
-
-LIBFT_DIR = Libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
-MAIN = main.c
-OUTPUT = test
-
+	
 all: $(NAME)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
-	
-$(NAME): $(OBJ) $(LIBFT) Makefile ft_printf.h
-	ar rcs $(NAME) $(OBJ)
-	ar x $(LIBFT)      
-	ar rcs $(NAME) *.o 
-	rm -f *.o
+$(NAME): $(OBJ)
+	ar crs $(NAME) $(OBJ)
 
-run: $(NAME)
-	$(CC) $(CFLAGS) $(MAIN) $(NAME) -o $(OUTPUT)
-	./$(OUTPUT)
+%.o : %.c Makefile ft_printf.h
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJ)
-	$(MAKE) -C $(LIBFT_DIR) clean
+	$(RM) $(OBJ) 
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(OUTPUT)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re run
+TEST = test
+MAIN = main.c
+
+run: $(NAME)
+	$(CC) $(CFLAGS) $(MAIN) ./$(NAME) -o $(TEST) 
+	./$(TEST)
+
+.PHONY: all clean fclean re test
+

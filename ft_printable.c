@@ -25,10 +25,7 @@ int	ft_putstr(char *s)
 	if (!s)
 		return (ft_putstr("(null)"));
 	while (s[i] != 0)
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
+		i += ft_putchar(s[i]);
 	return (i);
 }
 
@@ -39,10 +36,7 @@ int	ft_putnbr(int n)
 
 	counter = 0;
 	if (n == -2147483648)
-	{
-		ft_putstr("-2147483648");
-		return (11);
-	}
+		return (ft_putstr("-2147483648"));
 	else if (n < 0)
 	{
 		counter += ft_putchar('-');
