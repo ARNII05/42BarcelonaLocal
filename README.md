@@ -25,7 +25,7 @@ Estos son los requisitos que piden:
 1. Crear 2 particiones encriptadas usando LVM.
 2. Que ssh tiene que funcionar en el puerto 4242. Root no puede usar ssh.
 3. Se debe configurar UFW (en caso de Debian) y dejar solo el puerto 4242 abierto.
-4. El hostname debe ser nombreusuario42(en mi caso es abellavi42).
+4. El hostname debe ser nombre_usuario42(en mi caso es abellavi42).
 5. Implementar una politica de contraseñas fuerte.
 6. Configurar sudo como piden.
 7. Configurar un script para que ejecute una serie de comandos. 
@@ -44,6 +44,7 @@ Se pueden usar estos sistemas operativos:
 3. Se tiene que probar ssh con una nueva cuenta.
 4. Crear un nuevo usuario y asignarlo a un grupo.
 5. Saber como funciona el script.
+6. Mirar la firma: sha1sum Born2beRoot-disk001.vdi
 
 **RECURSOS**
 
@@ -95,9 +96,19 @@ He usado Debian porque vi que el enunciado ponia que era muy recomendable usarlo
 	1. /etc/pam.d/sudo
 	2. /etc/security/pwquality.conf
 2. Para el script tambien es un archivo: /usr/local/bin/monitoring.sh
-3. Registrar el input de sudo: /var/log/sudo
+3. Registrar el input de sudo: cd /var/log/sudo & ls
 4. Modo TTY: /etc/sudoers
 5. Para editar sudoers: sudo visudo
+6. Mirar particiones cifradas: cryptsetup luksDump /dev/sdb[number]
+7. User info: chage -l user_name
+8. Ver todos los usuarios: getent passwd
+9. Puerto actual de ssh: /etc/ssh/sshd_config o ss -tuln | grep 4242
+10. Para fer UFW: ufw status verbose
+11. Servicio de AppArmor: systemctl status apparmor
+12. Añadir un usuario a un grupo: usermod -aG group user
+13. Cambiar el hostname: hostnamectl set-hostname nuevo_hostname y /etc/hosts
+14. montar los discos: (cryptsetup open /dev/sdb1 cryptdata) (vgchange -ay vg1)
+(mount /dev/vg1/lv_data /mnt/data and mount /dev/vg1/lv_logs /mnt/logs )
 
 **Manejo de usuarios**
 
@@ -198,7 +209,7 @@ Cryptsetup,libpam-pwquality (para reglas de contraseñas), ssh, sudo.
 * UTM: Menor rendimiento en algunos casos porque usa QEMU.
 
 
-ENGLISG VERSION
+ENGLISH VERSION
 
 𝔗𝔥𝔦𝔰 𝔭𝔯𝔬𝔧𝔢𝔠𝔱 𝔥𝔞𝔰 𝔟𝔢𝔢𝔫 𝔠𝔯𝔢𝔞𝔱𝔢𝔡 𝔞𝔰 𝔭𝔞𝔯𝔱 𝔬𝔣 𝔱𝔥𝔢 42 𝔠𝔲𝔯𝔯𝔦𝔠𝔲𝔩𝔲𝔪 𝔟𝔶 𝔞𝔟𝔢𝔩𝔩𝔞𝔳𝔦
 
@@ -232,6 +243,7 @@ These operating systems can be used:
 3. SSH must be tested with a new account.
 4. Create a new user and assign it to a group.
 5. Understand how the script works.
+6. Check signature: sha1sum Born2beRoot-disk001.vdi
 
 **RESOURCES:**
 
@@ -289,6 +301,16 @@ I used Debian because I saw that the instructions recommended it if you didn’t
 3. Log sudo input: /var/log/sudo
 4. TTY mode: /etc/sudoers
 5. To edit sudoers: sudo visudo
+6. Check crypted partitions: cryptsetup luksDump /dev/sdb[number]
+7. User info: chage -l user_name
+8. See all users: getent passwd
+9. Actual ssh port: /etc/ssh/sshd_config or ss -tuln | grep 4242
+10. UFW service: ufw status verbose
+11. AppArmor service: systemctl status apparmor
+12. Add a user to a group: usermod -aG group user
+13. Change hostname: hostnamectl set-hostname new_hostname and /etc/hosts
+14. mount disks: (cryptsetup open /dev/sdb1 cryptdata) (vgchange -ay vg1)
+(mount /dev/vg1/lv_data /mnt/data and mount /dev/vg1/lv_logs /mnt/logs )
 
 **User Management:**
 
