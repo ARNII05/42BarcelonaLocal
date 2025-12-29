@@ -19,6 +19,6 @@
 char	*push_swap(int *nbrs);
 size_t	ft_strlen(const char *c);
 char	*ft_itoa(int n);
-int any_errors(int len, int nbr);
+int any_errors(int nbr);
 
 #endif

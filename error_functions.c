@@ -29,17 +29,7 @@ static int is_duplicate(int *nbr)
 
 }
 
-int any_errors(int len, int *nbr)
+int any_errors(int nbr)
 {
-	int i;
-	int n;
-
-	i = 0;
-	n = 0;
-	
-	n += ft_isnotdigit(nbr);
-	n += exceeding_int(nbr);
-	n += is_duplicate(&nbr);
-
-	return (n);
+	return (ft_isnotdigit(nbr) || exceeding_int(nbr));
 }

@@ -26,21 +26,23 @@ int	ft_atoi(const char *str)
 
 int main (int argc, char **argv)
 {
-	if (argc < 2)
-	{
-		printf("No args given");
-		return (0);
-	}
+	int *nums;
+	int i;
 
-	int *nums = malloc(sizeof(int) * (argc - 1));
+	i = 1;
+	if (argc < 2)
+		return (0);
+	nums = malloc(sizeof(int) * (argc - 1));
 	if (!nums)
 		return (1);
-
-	for (int i = 1; i < argc; i++)
-		nums[i - 1] = ft_atoi(argv[i]); 
-
+	while (i < argc)
+	{
+		nums[i - 1] = ft_atoi(argv[i]);
+		if (any_errors(nums[i - 1]))
+			ft_printf("Error\n");
+		i++;
+	}
 	push_swap(nums);
-
 	free(nums);
 	return (0);
 }
