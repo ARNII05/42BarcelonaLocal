@@ -12,19 +12,8 @@
 
 #include "push_swap.h"
 
-int integer_len(int *nbrs)
+char	*push_swap(int *nbrs)
 {
-	size_t i;
-	
-	i = 0;
-	while (ft_strlen(ft_itoa(nbrs[i])) != 0)
-		i++;
-	return (i);
-}
-
-char *push_swap(int *nbrs)
-{
-	if (any_errors(integer_len(nbrs), nbrs))
-		return ("Error\n");
-	return ("");
+	(void) nbrs;
+	return (" ");
 }

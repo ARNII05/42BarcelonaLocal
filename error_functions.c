@@ -12,24 +12,58 @@
 
 #include "push_swap.h"
 
-static int	ft_isnotdigit(int c)
+int	ft_is_digit(char	*str)
 {
-	if (c >= 48 && c <= 57)
-		return (0);
+	int	i;
+
+	i = 0;
+	if ((str[i] == '-' || str[i] == '+') && (ft_strlen(str) > 1))
+		i++;
+	while (str[i] != '\0')
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
-static int exceeding_int(long nbr)
+static int	exceeding_int(long nbr)
 {
-	return (nbr > 2147483647 || nbr < -2147483648);
+	return (nbr > 2147483647 || nbr <= -2147483648);
 }
 
-static int is_duplicate(int *nbr)
+int	any_duplicate(int *nbr, int argc)
 {
+	int	i;
+	int	j;
 
+	i = 1;
+	j = argc - 1;
+	while (i < j)
+	{
+		while (i < j)
+		{
+			if (nbr[i - 1] == nbr[j - 1])
+				return (1);
+			j--;
+		}
+		i++;
+		j = argc - 1;
+	}
+	return (0);
 }
 
-int any_errors(int nbr)
+int	any_errors(int *nbrs, int argc)
 {
-	return (ft_isnotdigit(nbr) || exceeding_int(nbr));
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (exceeding_int(nbrs[i - 1]))
+			return (1);
+		i++;
+	}
+	return (any_duplicate(nbrs, argc));
 }

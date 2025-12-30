@@ -19,12 +19,20 @@ int	ft_isnotdigit(int c)
 	return (1);
 }
 
-size_t	ft_strlen(const char *c)
+/*
+char	*ft_strchr(const char *string, int c)
 {
-	size_t	i;
+	int	len;
+	int	i;
 
 	i = 0;
-	while (c[i] != 0)
+	len = ft_strlen(string) + 1;
+	while (i < len)
+	{
+		if (string[i] == c)
+			return ((char *)(string + i));
 		i++;
-	return (i);
+	}
+	return (0);
 }
+*/

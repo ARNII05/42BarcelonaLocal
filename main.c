@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/15 16:19:26 by arnau             #+#    #+#             */
+/*   Updated: 2025/12/15 10:50:43 by abellavi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+#include "printf/ft_printf.h"
 #include <stdio.h>
 
 int	ft_atoi(const char *str)
@@ -24,10 +37,10 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int *nums;
-	int i;
+	int	*nums;
+	int	i;
 
 	i = 1;
 	if (argc < 2)
@@ -37,11 +50,13 @@ int main (int argc, char **argv)
 		return (1);
 	while (i < argc)
 	{
+		if (!ft_is_digit(argv[i]))
+			return (ft_printf("Error\n"), 0);
 		nums[i - 1] = ft_atoi(argv[i]);
-		if (any_errors(nums[i - 1]))
-			ft_printf("Error\n");
 		i++;
 	}
+	if (any_errors(nums, argc))
+		return (ft_printf("Error\n"), 0);
 	push_swap(nums);
 	free(nums);
 	return (0);

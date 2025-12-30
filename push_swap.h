@@ -13,12 +13,16 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include "printf/ft_printf.h"
 
 char	*push_swap(int *nbrs);
 size_t	ft_strlen(const char *c);
 char	*ft_itoa(int n);
-int any_errors(int nbr);
+int		any_errors(int *nbrs, int argc);
+int		any_duplicate(int *nbr, int argc);
+char	*ft_strchr(const char *string, int c);
+int		ft_is_digit(char *str);
 
 #endif
