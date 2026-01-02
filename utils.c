@@ -19,7 +19,20 @@ int	ft_isnotdigit(int c)
 	return (1);
 }
 
-/*
+char	*ft_strdup(const char *s)
+{
+	char	*str;
+	size_t	len;
+
+	len = ft_strlen(s);
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	ft_memcpy(str, s, len);
+	str[len] = '\0';
+	return (str);
+}
+
 char	*ft_strchr(const char *string, int c)
 {
 	int	len;
@@ -35,4 +48,3 @@ char	*ft_strchr(const char *string, int c)
 	}
 	return (0);
 }
-*/

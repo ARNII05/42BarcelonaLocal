@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   error_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,17 +12,18 @@
 
 #include "push_swap.h"
 
-static char *init_stack_b(int argc)
+void	putstr(char *s)
 {
-	int *stack_b;
-	stack_b = malloc(sizeof(int) * argc);
-	stack_b = NULL;
-	return (stack_b);
+	int	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != 0)
+		i += ft_putchar(s[i]);
 }
 
-void push_swap(int **stack_a, int argc)
+int	ft_putchar(char c)
 {
-	int *stack_b;
-
-	stack_b = init_stack_b(argc);
+	return (write(1, &c, 1));
 }

@@ -39,25 +39,23 @@ int	ft_atoi(const char *str)
 
 int	main(int argc, char **argv)
 {
-	int	*nums;
+	int	*stack_a;
 	int	i;
 
 	i = 1;
 	if (argc < 2)
 		return (0);
-	nums = malloc(sizeof(int) * (argc - 1));
-	if (!nums)
-		return (1);
+	stack_a = malloc(sizeof(int) * (argc - 1));
+	if (!stack_a)
+		return (0);
 	while (i < argc)
 	{
 		if (!ft_is_digit(argv[i]))
-			return (ft_printf("Error\n"), 0);
-		nums[i - 1] = ft_atoi(argv[i]);
+			return (putstr("Error\n"), 0);
+		stack_a[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
-	if (any_errors(nums, argc))
-		return (ft_printf("Error\n"), 0);
-	push_swap(nums);
-	free(nums);
-	return (0);
+	if (any_errors(stack_a, argc))
+		return (putstr("Error\n"), 0);
+	return (push_swap(&stack_a, argc - 1), free(stack_a), 0);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   error_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,17 +12,21 @@
 
 #include "push_swap.h"
 
-static char *init_stack_b(int argc)
+
+//Take the first element at the top of b and put it at the top of a.
+//Do nothing if b is empty.
+void do_pa(int **stack_a, int **stack_b)
 {
-	int *stack_b;
-	stack_b = malloc(sizeof(int) * argc);
-	stack_b = NULL;
-	return (stack_b);
+	if (stack_b == NULL)
+		return ;
+	putstr("pa\n");
 }
 
-void push_swap(int **stack_a, int argc)
+//Take the first element at the top of a and put it at the top of b.
+//Do nothing if a is empty.
+void do_pb(int **stack_a, int **stack_b)
 {
-	int *stack_b;
-
-	stack_b = init_stack_b(argc);
+	if (stack_a == NULL)
+		return ;
+	putstr("pb\n");
 }

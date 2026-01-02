@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   error_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnau <arnau.bf05@>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,18 +11,26 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static char *init_stack_b(int argc)
+//Shift up all elements of stack a by 1.
+//The first element becomes the last one.
+void do_ra(int **stack_a)
 {
-	int *stack_b;
-	stack_b = malloc(sizeof(int) * argc);
-	stack_b = NULL;
-	return (stack_b);
+	putstr("ra\n");
 }
 
-void push_swap(int **stack_a, int argc)
-{
-	int *stack_b;
 
-	stack_b = init_stack_b(argc);
+//Shift up all elements of stack b by 1.
+//The first element becomes the last one
+void do_rb(int **stack_b)
+{
+	putstr("rb\n");
+}
+
+
+//ra and rb at the same time
+void do_rr(int **stack_a, int **stack_b)
+{
+do_ra(stack_a);
+do_rb(stack_b);
+putstr("rr\n");
 }
