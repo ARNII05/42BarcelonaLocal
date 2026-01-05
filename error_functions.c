@@ -28,9 +28,9 @@ int	ft_is_digit(char	*str)
 	return (1);
 }
 
-static int	exceeding_int(long nbr)
+int	exceeding_int(long nbr)
 {
-	return (nbr > 2147483647 || nbr <= -2147483648);
+	return (nbr > 2147483647 || nbr < -2147483648);
 }
 
 int	any_duplicate(int *nbr, int argc)
@@ -39,7 +39,7 @@ int	any_duplicate(int *nbr, int argc)
 	int	j;
 
 	i = 1;
-	j = argc - 1;
+	j = argc;
 	while (i < j)
 	{
 		while (i < j)
@@ -49,21 +49,7 @@ int	any_duplicate(int *nbr, int argc)
 			j--;
 		}
 		i++;
-		j = argc - 1;
+		j = argc;
 	}
 	return (0);
-}
-
-int	any_errors(int *nbrs, int argc)
-{
-	int	i;
-
-	i = 1;
-	while (i < argc)
-	{
-		if (exceeding_int(nbrs[i - 1]))
-			return (1);
-		i++;
-	}
-	return (any_duplicate(nbrs, argc));
 }

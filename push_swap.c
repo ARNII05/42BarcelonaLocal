@@ -12,17 +12,7 @@
 
 #include "push_swap.h"
 
-static char *init_stack_b(int argc)
+void push_swap(t_stack *stack_a, t_stack *stack_b)
 {
-	int *stack_b;
-	stack_b = malloc(sizeof(int) * argc);
-	stack_b = NULL;
-	return (stack_b);
-}
-
-void push_swap(int **stack_a, int argc)
-{
-	int *stack_b;
-
-	stack_b = init_stack_b(argc);
+	
 }
