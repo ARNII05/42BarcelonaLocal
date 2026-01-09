@@ -11,26 +11,31 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//Shift up all elements of stack a by 1.
+//Shift up all elements of any stack by 1.
 //The first element becomes the last one.
-void do_ra(int **stack_a)
+void	do_r(t_stack *stack, char *op_name)
 {
-	putstr("ra\n");
+	int	tmp;
+	int	i;
+
+	if (stack->size < 2)
+		return ;
+	tmp = stack->data[0];
+	i = 0;
+	while (i < stack->size - 1)
+	{
+		stack->data[i] = stack->data[i + 1];
+		i++;
+	}
+	stack->data[stack->size - 1] = tmp;
+	if (op_name)
+		putstr(op_name, 1);
 }
-
-
-//Shift up all elements of stack b by 1.
-//The first element becomes the last one
-void do_rb(int **stack_b)
-{
-	putstr("rb\n");
-}
-
 
 //ra and rb at the same time
-void do_rr(int **stack_a, int **stack_b)
+void	do_rr(t_stack *stack_a, t_stack *stack_b)
 {
-do_ra(stack_a);
-do_rb(stack_b);
-putstr("rr\n");
+	do_r(stack_a, NULL);
+	do_r(stack_b, NULL);
+	putstr("rr\n", 1);
 }

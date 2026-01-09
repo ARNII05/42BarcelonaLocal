@@ -12,21 +12,26 @@
 
 #include "push_swap.h"
 
-
-//Take the first element at the top of b and put it at the top of a.
-//Do nothing if b is empty.
-void do_pa(int **stack_a, int **stack_b)
+//Take the first element at the top of src and put it at the top of dest
+void	do_p(t_stack *src, t_stack *dest, char *op_name)
 {
-	if (stack_b == NULL)
-		return ;
-	putstr("pa\n");
-}
+	int	i;
 
-//Take the first element at the top of a and put it at the top of b.
-//Do nothing if a is empty.
-void do_pb(int **stack_a, int **stack_b)
-{
-	if (stack_a == NULL)
+	if (src->size == 0)
 		return ;
-	putstr("pb\n");
+	i = dest->size;
+	while (i > 0)
+	{
+		dest->data[i] = dest->data[i - 1];
+		i--;
+	}
+	dest[0] = src[0];
+	dest->size++;
+	i = 0;
+	while (i < src->size - 1)
+	{
+		src->data[i] = src->data[i + 1];
+	}
+	src->size--;
+	putstr(op_name, 1);
 }

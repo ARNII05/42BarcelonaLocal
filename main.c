@@ -37,10 +37,10 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-static int errors_stack(t_stack	*stack_a, char **argv)
+static int	errors_stack(t_stack	*stack_a, char **argv)
 {
-	int	i;
-	long n;
+	int		i;
+	long	n;
 
 	i = 1;
 	n = 0;
@@ -48,26 +48,21 @@ static int errors_stack(t_stack	*stack_a, char **argv)
 	{
 		n = ft_atoi(argv[i]);
 		if (!ft_is_digit(argv[i]) || exceeding_int(n))
-			return (free(stack_a->data), stack_a->data = NULL, putstr("Error\n"), 0);
+		{
+			free(stack_a->data);
+			return (stack_a->data = NULL, putstr("Error\n", 2), 0);
+		}
 		stack_a->data[i - 1] = (int) n;
 		i++;
 	}
 	return (1);
 }
 
-static t_stack init_stack(int capacity)
-{
- t_stack stack;
- stack.data = malloc(sizeof(int) * capacity);
- stack.size = 0;
- stack.cap = capacity;
- return (stack);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
+	int		error;
 
 	if (argc < 2)
 		return (0);
@@ -75,8 +70,12 @@ int	main(int argc, char **argv)
 	stack_b = init_stack(argc - 1);
 	if (!stack_a.data || !stack_b.data)
 		return (0);
-	if (any_duplicate(stack_a.data, stack_a.cap) || errors_stack(&stack_a, argv))
-		return (free(stack_a.data), free(stack_b.data), putstr("Error\n"), 0);
+	error = errors_stack(&stack_a, argv);
+	if (any_duplicate(stack_a.data, stack_a.size) || error)
+	{
+		free(stack_a.data);
+		return (free(stack_b.data), putstr("Error\n", 2), 0);
+	}
 	push_swap(&stack_a, &stack_b);
 	return (free(stack_a.data), free(stack_b.data), 1);
 }

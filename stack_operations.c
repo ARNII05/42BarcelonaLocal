@@ -12,18 +12,12 @@
 
 #include "push_swap.h"
 
-void	putstr(char *s, int fd)
+t_stack	init_stack(int capacity)
 {
-	int	i;
+	t_stack	stack;
 
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i] != 0)
-		i += ft_putchar(s[i], fd);
-}
-
-static int	ft_putchar(char c, int fd)
-{
-	return (write(fd, &c, 1));
+	stack.cap = capacity;
+	stack.size = 0;
+	stack.data = malloc(sizeof(int) * capacity);
+	return (stack);
 }
