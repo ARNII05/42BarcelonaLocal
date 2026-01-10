@@ -28,9 +28,9 @@ void	do_s_tasks(t_stack *stack, char *op_name)
 }
 
 //sa and sb at the same time.
-void	do_ss(t_stack *stack_a, t_stack *stack_b, char *op_name)
+void	do_ss(t_stack *stack_a, t_stack *stack_b)
 {
 	do_s_task(stack_a, NULL);
 	do_s_task(stack_b, NULL);
-	ft_putstr(op_name);
+	ft_putstr("ss\n");
 }
