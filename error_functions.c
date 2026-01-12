@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	ft_is_digit(char	*str)
+static int	ft_is_digit(char	*str)
 {
 	int	i;
 
@@ -28,12 +28,12 @@ int	ft_is_digit(char	*str)
 	return (1);
 }
 
-int	exceeding_int(long nbr)
+static int	exceeding_int(long nbr)
 {
-	return (nbr > 2147483647 || nbr < -2147483648);
+	return (nbr > INT_MAX || nbr < INT_MIN);
 }
 
-int	any_duplicate(int *nbr, int argc)
+static int	any_duplicate(int *nbr, int argc)
 {
 	int	i;
 	int	j;
@@ -52,4 +52,23 @@ int	any_duplicate(int *nbr, int argc)
 		j = argc;
 	}
 	return (0);
+}
+
+int	fill_stack(t_stack	*stack_a, char **argv)
+{
+	int		i;
+	long	n;
+
+	i = 1;
+	n = 0;
+	while (i <= stack_a->cap)
+	{
+		n = ft_atoi(argv[i]);
+		if (!ft_is_digit(argv[i]) || exceeding_int(n))
+			return (1);
+		stack_a->data[i - 1] = (int) n;
+		stack_a->size++;
+		i++;
+	}
+	return (any_duplicate(stack_a->data, stack_a->size));
 }

@@ -13,7 +13,7 @@
 #include "push_swap.h"
 //Shift down all elements of any stack a by 1.
 //The last element becomes the first one.
-void	do_rr(t_stack *stack, char *op_name)
+void	do_rrx(t_stack *stack, char *op_name)
 {
 	int	tmp;
 	int	i;
@@ -35,7 +35,7 @@ void	do_rr(t_stack *stack, char *op_name)
 //rra and rrb at the same time.
 void	do_rrr(t_stack *stack_a, t_stack *stack_b)
 {
-	do_rr(stack_a, NULL);
-	do_rr(stack_b, NULL);
+	do_rrx(stack_a, NULL);
+	do_rrx(stack_b, NULL);
 	putstr("rrr\n", 1);
 }

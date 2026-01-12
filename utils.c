@@ -12,13 +12,40 @@
 
 #include "push_swap.h"
 
-int	ft_isnotdigit(int c)
+long	ft_atoi(const char *str)
 {
-	if (c >= 48 && c <= 57)
-		return (0);
-	return (1);
+	long	result;
+	long	sign;
+	int	i;
+
+	result = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
+		sign *= -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + str[i] - '0';
+		i++;
+	}
+	return (result * sign);
 }
 
+size_t	ft_strlen(const char *c)
+{
+	size_t	i;
+
+	i = 0;
+	while (c[i] != 0)
+		i++;
+	return (i);
+}
+
+/*
 char	*ft_strdup(const char *s)
 {
 	char	*str;
@@ -48,3 +75,4 @@ char	*ft_strchr(const char *string, int c)
 	}
 	return (0);
 }
+*/

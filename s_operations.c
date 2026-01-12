@@ -24,13 +24,13 @@ void	do_s_tasks(t_stack *stack, char *op_name)
 	stack->data[0] = stack->data[1];
 	stack->data[1] = tmp;
 	if (op_name)
-		ft_putstr(op_name);
+		putstr(op_name, 1);
 }
 
 //sa and sb at the same time.
 void	do_ss(t_stack *stack_a, t_stack *stack_b)
 {
-	do_s_task(stack_a, NULL);
-	do_s_task(stack_b, NULL);
-	ft_putstr("ss\n");
+	do_s_tasks(stack_a, NULL);
+	do_s_tasks(stack_b, NULL);
+	putstr("ss\n", 1);
 }
