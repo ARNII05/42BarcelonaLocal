@@ -22,17 +22,39 @@ t_stack	init_stack(int capacity)
 	return (stack);
 }
 
-void sort_len_three(t_stack *stack)
+void	sort_len_three(t_stack *stack)
 {
+	int	x;
+	int	y;
+	int	z;
 
+	x = stack->data[0];
+	y = stack->data[1];
+	z = stack->data[2];
+	if (x > y && y < z && x < z)
+		do_s_tasks(stack, "sa\n");
+	else if (x > y && y > z)
+	{
+		do_s_tasks(stack, "sa\n");
+		do_rrx(stack, "rra\n");
+	}
+	else if (x > y && y < z && x > z)
+		do_r(stack, "ra\n");
+	else if (x < y && y > z && x < z)
+	{
+		do_s_tasks(stack, "sa\n");
+		do_r(stack, "ra\n");
+	}
+	else
+		do_rrx(stack, "rra\n");
 }
 
-void sort(t_stack *stack_a, t_stack *stack_b)
+void	sort(t_stack *stack_a, t_stack *stack_b)
 {
-
+	return ;
 }
 
-int stack_is_sorted(t_stack *stack)
+int	stack_is_sorted(t_stack *stack)
 {
 	int	i;
 

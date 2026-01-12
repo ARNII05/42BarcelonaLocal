@@ -18,6 +18,6 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 		do_s_tasks(stack_a, "sa\n");
 	else if (stack_a->size == 3)
 		sort_len_three(stack_a);
-	else if (stack_a->size > 3)
+	else if (stack_b->size > 3)
 		sort(stack_a, stack_b);
 }

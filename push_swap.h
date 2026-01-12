@@ -17,8 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-#define INT_MAX ((long) 2147483647)
-#define INT_MIN ((long) -2147483647)
+# define INT_MAX 2147483647
+# define INT_MIN -2147483647
 
 typedef struct s_stack
 {
@@ -37,11 +37,11 @@ void	do_rrx(t_stack *stack, char *op_name);
 void	do_s_tasks(t_stack *stack, char *op_name);
 void	do_ss(t_stack *stack_a, t_stack *stack_b);
 void	putstr(char *s, int fd);
-void sort_len_three(t_stack *stack);
-void sort(t_stack *stack_a, t_stack *stack_b);
-long		ft_atoi(const char *str);
+void	sort_len_three(t_stack *stack);
+void	sort(t_stack *stack_a, t_stack *stack_b);
+long	ft_atoi(const char *str);
 int		fill_stack(t_stack	*stack_a, char **argv);
-int 	stack_is_sorted(t_stack *stack);
+int		stack_is_sorted(t_stack *stack);
 char	*ft_itoa(int n);
 
 #endif
