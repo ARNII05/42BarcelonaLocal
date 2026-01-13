@@ -12,6 +12,11 @@
 
 #include "push_swap.h"
 
+//Put statements on functions
+//Check norminette, checker_OS and memory leaks
+//Do more tests (including subject)
+//Output must be only either Error or any operation
+
 static void	print_stack(t_stack *stack)
 {
 	if (stack_is_sorted(stack))
