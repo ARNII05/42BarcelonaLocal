@@ -45,34 +45,45 @@ size_t	ft_strlen(const char *c)
 	return (i);
 }
 
-/*
-char	*ft_strdup(const char *s)
+static int *copy_int(int cap, int *n)
 {
-	char	*str;
-	size_t	len;
-
-	len = ft_strlen(s);
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	ft_memcpy(str, s, len);
-	str[len] = '\0';
-	return (str);
-}
-
-char	*ft_strchr(const char *string, int c)
-{
-	int	len;
+	int	*c;
 	int	i;
 
 	i = 0;
-	len = ft_strlen(string) + 1;
-	while (i < len)
+	c = malloc(sizeof(int) * cap);
+	if (!c)
+		return (NULL);
+	while (i < cap)
 	{
-		if (string[i] == c)
-			return ((char *)(string + i));
+		c[i] = n[i];
 		i++;
 	}
-	return (0);
+	return (c);
 }
-*/
+
+void	set_index(t_stack *stack)
+{
+	int	i;
+	int	j;
+	int *copy;
+
+	i = 0;
+	copy = copy_int(stack->cap, stack->data);
+	sort_int(copy, stack->size);
+	while (i < stack->size)
+	{
+		j = 0;
+		while (j < stack->size)
+		{
+			if (stack->data[i] == copy[j])
+			{
+				stack->data[i] = j;
+				break ;
+			}
+			j++;
+		}
+		i++;
+	}
+	free(copy);
+}

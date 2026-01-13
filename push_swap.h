@@ -39,9 +39,13 @@ void	do_ss(t_stack *stack_a, t_stack *stack_b);
 void	putstr(char *s, int fd);
 void	sort_len_three(t_stack *stack);
 void	sort(t_stack *stack_a, t_stack *stack_b);
+void	set_index(t_stack *stack);
+void	sort_index(t_stack *stack_a, t_stack *stack_b);
+void	sort_int(int *n, int size);
 long	ft_atoi(const char *str);
 int		fill_stack(t_stack	*stack_a, char **argv);
 int		stack_is_sorted(t_stack *stack);
+int		stack_max_bits(t_stack *stack_a);
 char	*ft_itoa(int n);
 
 #endif

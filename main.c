@@ -12,13 +12,16 @@
 
 #include "push_swap.h"
 
-/*
 void	print_stack(t_stack *stack)
 {
-	for (int i = 0; i < stack->cap; i++)
-		printf("%d", stack->data[i]);
+	if (stack_is_sorted(stack))
+		printf("Is sorted");
+	else
+		printf("Is not sorted");
+	printf("\n");
+	for (int i = 0; i < stack->size - 1; i++)
+		printf("%d ", stack->data[i]);
 }
-*/
 
 int	main(int argc, char **argv)
 {
@@ -38,5 +41,6 @@ int	main(int argc, char **argv)
 	}
 	if (stack_a.size >= 2 && !stack_is_sorted(&stack_a))
 		push_swap(&stack_a, &stack_b);
+	print_stack(&stack_a);
 	return (free(stack_a.data), free(stack_b.data), 1);
 }

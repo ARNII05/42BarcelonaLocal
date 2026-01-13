@@ -31,6 +31,7 @@ void	do_p(t_stack *src, t_stack *dest, char *op_name)
 	while (i < src->size - 1)
 	{
 		src->data[i] = src->data[i + 1];
+		i++;
 	}
 	src->size--;
 	putstr(op_name, 1);

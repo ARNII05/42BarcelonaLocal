@@ -22,6 +22,26 @@ t_stack	init_stack(int capacity)
 	return (stack);
 }
 
+int stack_max_bits(t_stack *stack_a)
+{
+	int	max_bits;
+	int	max_index;
+	int i;
+
+	max_bits = 0;
+	max_index = 0;
+	i = 0;
+	while (i < stack_a->size)
+	{
+		if (max_index < stack_a->data[i])
+			max_index = stack_a->data[i];
+		i++;
+	}
+	while ((max_index >> max_bits) != 0)
+		max_bits++;
+	return (max_bits);
+}
+
 void	sort_len_three(t_stack *stack)
 {
 	int	x;
@@ -49,11 +69,6 @@ void	sort_len_three(t_stack *stack)
 		do_rrx(stack, "rra\n");
 }
 
-void	sort(t_stack *stack_a, t_stack *stack_b)
-{
-	return ;
-}
-
 int	stack_is_sorted(t_stack *stack)
 {
 	int	i;
@@ -66,4 +81,28 @@ int	stack_is_sorted(t_stack *stack)
 		i++;
 	}
 	return (1);
+}
+
+void	sort_int(int *n, int size)
+{
+	int	i;
+	int	j;
+	int tmp;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (n[i] > n[j])
+			{
+				tmp = n[i];
+				n[i] = n[j];
+				n[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
 }
