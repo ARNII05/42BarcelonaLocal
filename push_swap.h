@@ -27,15 +27,11 @@ typedef struct s_stack
 	int	cap;
 }	t_stack;
 t_stack	init_stack(int capacity);
-size_t	ft_strlen(const char *c);
 void	push_swap(t_stack *stack_a, t_stack *stack_b);
 void	do_p(t_stack *stack_a, t_stack *stack_b, char *op_name);
 void	do_r(t_stack *stack, char *op_name);
-void	do_rr(t_stack *stack_a, t_stack *stack_b);
-void	do_rrr(t_stack *stack_a, t_stack *stack_b);
 void	do_rrx(t_stack *stack, char *op_name);
 void	do_s_tasks(t_stack *stack, char *op_name);
-void	do_ss(t_stack *stack_a, t_stack *stack_b);
 void	putstr(char *s, int fd);
 void	sort_len_three(t_stack *stack);
 void	sort(t_stack *stack_a, t_stack *stack_b);
@@ -46,6 +42,6 @@ long	ft_atoi(const char *str);
 int		fill_stack(t_stack	*stack_a, char **argv);
 int		stack_is_sorted(t_stack *stack);
 int		stack_max_bits(t_stack *stack_a);
-char	*ft_itoa(int n);
+int		*copy_int(int cap, int *n);
 
 #endif

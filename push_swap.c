@@ -12,6 +12,32 @@
 
 #include "push_swap.h"
 
+void	set_index(t_stack *stack)
+{
+	int	i;
+	int	j;
+	int *copy;
+
+	i = 0;
+	copy = copy_int(stack->cap, stack->data);
+	sort_int(copy, stack->size);
+	while (i < stack->size)
+	{
+		j = 0;
+		while (j < stack->size)
+		{
+			if (stack->data[i] == copy[j])
+			{
+				stack->data[i] = j;
+				break ;
+			}
+			j++;
+		}
+		i++;
+	}
+	free(copy);
+}
+
 void sort_index(t_stack *stack_a, t_stack *stack_b)
 {
 	int	max_bits;

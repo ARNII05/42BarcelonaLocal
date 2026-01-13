@@ -45,7 +45,7 @@ size_t	ft_strlen(const char *c)
 	return (i);
 }
 
-static int *copy_int(int cap, int *n)
+int *copy_int(int cap, int *n)
 {
 	int	*c;
 	int	i;
@@ -62,28 +62,26 @@ static int *copy_int(int cap, int *n)
 	return (c);
 }
 
-void	set_index(t_stack *stack)
+void	sort_int(int *n, int size)
 {
 	int	i;
 	int	j;
-	int *copy;
+	int tmp;
 
 	i = 0;
-	copy = copy_int(stack->cap, stack->data);
-	sort_int(copy, stack->size);
-	while (i < stack->size)
+	while (i < size - 1)
 	{
-		j = 0;
-		while (j < stack->size)
+		j = i + 1;
+		while (j < size)
 		{
-			if (stack->data[i] == copy[j])
+			if (n[i] > n[j])
 			{
-				stack->data[i] = j;
-				break ;
+				tmp = n[i];
+				n[i] = n[j];
+				n[j] = tmp;
 			}
 			j++;
 		}
 		i++;
 	}
-	free(copy);
 }

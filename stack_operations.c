@@ -83,26 +83,3 @@ int	stack_is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	sort_int(int *n, int size)
-{
-	int	i;
-	int	j;
-	int tmp;
-
-	i = 0;
-	while (i < size - 1)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (n[i] > n[j])
-			{
-				tmp = n[i];
-				n[i] = n[j];
-				n[j] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-}

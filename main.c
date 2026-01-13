@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-void	print_stack(t_stack *stack)
+static void	print_stack(t_stack *stack)
 {
 	if (stack_is_sorted(stack))
 		printf("Is sorted");
 	else
 		printf("Is not sorted");
-	printf("\n");
-	for (int i = 0; i < stack->size - 1; i++)
+	printf("\nList: ");
+	for (int i = 0; i < stack->size; i++)
 		printf("%d ", stack->data[i]);
 }
 
