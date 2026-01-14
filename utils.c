@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-long	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	long	result;
-	long	sign;
-	int		i;
+	long long	result;
+	int			sign;
+	int			i;
 
 	result = 0;
 	sign = 1;
@@ -35,7 +35,7 @@ long	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-int *copy_int(int cap, int *n)
+int	*copy_int(int cap, int *n)
 {
 	int	*c;
 	int	i;
@@ -56,7 +56,7 @@ void	sort_int(int *n, int size)
 {
 	int	i;
 	int	j;
-	int tmp;
+	int	tmp;
 
 	i = 0;
 	while (i < size - 1)
@@ -74,4 +74,14 @@ void	sort_int(int *n, int size)
 		}
 		i++;
 	}
+}
+
+size_t	ft_strlen(const char *c)
+{
+	size_t	i;
+
+	i = 0;
+	while (c[i] != 0)
+		i++;
+	return (i);
 }

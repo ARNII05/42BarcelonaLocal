@@ -23,11 +23,11 @@ t_stack	init_stack(int capacity)
 }
 
 //It checks how many bits you need for the biggest index.
-int stack_max_bits(t_stack *stack_a)
+int	stack_max_bits(t_stack *stack_a)
 {
 	int	max_bits;
 	int	max_index;
-	int i;
+	int	i;
 
 	max_bits = 0;
 	max_index = 0;
@@ -84,4 +84,3 @@ int	stack_is_sorted(t_stack *stack)
 	}
 	return (1);
 }
-

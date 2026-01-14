@@ -17,7 +17,7 @@ static int	ft_is_digit(char	*str)
 	int	i;
 
 	i = 0;
-	if ((str[i] == '-' || str[i] == '+'))
+	if (str[i] == '-' && ft_strlen(str) > 1)
 		i++;
 	while (str[i] != '\0')
 	{
@@ -28,7 +28,7 @@ static int	ft_is_digit(char	*str)
 	return (1);
 }
 
-static int	exceeding_int(long nbr)
+static int	exceeding_int(long long nbr)
 {
 	return (nbr > INT_MAX || nbr < INT_MIN);
 }
@@ -57,8 +57,8 @@ static int	any_duplicate(int *nbr, int argc)
 //Fill stack_a with user input and check if there's any errors
 int	fill_stack(t_stack	*stack_a, char **argv)
 {
-	int		i;
-	long	n;
+	long long	n;
+	int			i;
 
 	i = 1;
 	n = 0;

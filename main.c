@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <limits.h>
 
-//Put statements on functions
 //Check norminette, checker_OS and memory leaks
-//Do more tests (including subject)
 //Output must be only either Error or any operation
 
+/*
 static void	print_stack(t_stack *stack)
 {
 	if (stack_is_sorted(stack))
@@ -27,12 +27,14 @@ static void	print_stack(t_stack *stack)
 	for (int i = 0; i < stack->size; i++)
 		printf("%d ", stack->data[i]);
 }
+*/
 
 int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
 
+	printf("%d", argc);
 	if (argc < 2)
 		return (0);
 	stack_a = init_stack(argc - 1);
@@ -46,6 +48,5 @@ int	main(int argc, char **argv)
 	}
 	if (stack_a.size >= 2 && !stack_is_sorted(&stack_a))
 		push_swap(&stack_a, &stack_b);
-	print_stack(&stack_a);
 	return (free(stack_a.data), free(stack_b.data), 1);
 }
