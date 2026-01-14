@@ -34,7 +34,6 @@ void	do_rrx(t_stack *stack, char *op_name);
 void	do_s_tasks(t_stack *stack, char *op_name);
 void	putstr(char *s, int fd);
 void	sort_len_three(t_stack *stack);
-void	sort(t_stack *stack_a, t_stack *stack_b);
 void	set_index(t_stack *stack);
 void	sort_index(t_stack *stack_a, t_stack *stack_b);
 void	sort_int(int *n, int size);

@@ -35,16 +35,6 @@ long	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-size_t	ft_strlen(const char *c)
-{
-	size_t	i;
-
-	i = 0;
-	while (c[i] != 0)
-		i++;
-	return (i);
-}
-
 int *copy_int(int cap, int *n)
 {
 	int	*c;

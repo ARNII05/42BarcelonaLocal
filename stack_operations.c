@@ -22,6 +22,7 @@ t_stack	init_stack(int capacity)
 	return (stack);
 }
 
+//It checks how many bits you need for the biggest index.
 int stack_max_bits(t_stack *stack_a)
 {
 	int	max_bits;
@@ -42,6 +43,7 @@ int stack_max_bits(t_stack *stack_a)
 	return (max_bits);
 }
 
+//It does all the combinations for a len of 3 (harcoded).
 void	sort_len_three(t_stack *stack)
 {
 	int	x;

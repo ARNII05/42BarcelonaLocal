@@ -12,6 +12,9 @@
 
 #include "push_swap.h"
 
+//It makes a copy of stack_a and it orders the stack.
+//The smallest at the top and the bigger at the bottom.
+//Asign an index for each number comparing the sorted stack with the non sorted stack.
 void	set_index(t_stack *stack)
 {
 	int	i;
@@ -38,6 +41,9 @@ void	set_index(t_stack *stack)
 	free(copy);
 }
 
+//Takes each bit for each index and compares if it's 0 or 1.
+//If its 0 it does pb. For number 1 ra operation.
+//When it finishes one column, return all values to stack_a. 
 void sort_index(t_stack *stack_a, t_stack *stack_b)
 {
 	int	max_bits;
@@ -65,12 +71,6 @@ void sort_index(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void	sort(t_stack *stack_a, t_stack *stack_b)
-{
-	set_index(stack_a);
-	sort_index(stack_a, stack_b);
-}
-
 void	push_swap(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->size == 2)
@@ -78,5 +78,8 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 	else if (stack_a->size == 3)
 		sort_len_three(stack_a);
 	else if (stack_a->size > 3)
-		sort(stack_a, stack_b);
+	{
+		set_index(stack_a);
+		sort_index(stack_a, stack_b);
+	}
 }

@@ -54,6 +54,7 @@ static int	any_duplicate(int *nbr, int argc)
 	return (0);
 }
 
+//Fill stack_a with user input and check if there's any errors
 int	fill_stack(t_stack	*stack_a, char **argv)
 {
 	int		i;
