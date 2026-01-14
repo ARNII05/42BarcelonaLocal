@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
 
 //Check norminette, checker_OS and memory leaks
 //Output must be only either Error or any operation
@@ -34,7 +33,6 @@ int	main(int argc, char **argv)
 	t_stack	stack_a;
 	t_stack	stack_b;
 
-	printf("%d", argc);
 	if (argc < 2)
 		return (0);
 	stack_a = init_stack(argc - 1);
