@@ -26,6 +26,7 @@ typedef struct s_stack
 	int	*data;
 	int	size;
 	int	cap;
+	int	n_operations;
 }	t_stack;
 long long	ft_atoi(const char *str);
 size_t		ft_strlen(const char *c);

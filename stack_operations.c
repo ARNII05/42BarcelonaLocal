@@ -18,6 +18,7 @@ t_stack	init_stack(int capacity)
 
 	stack.cap = capacity;
 	stack.size = 0;
+	stack.n_operations = 0;
 	stack.data = malloc(sizeof(int) * capacity);
 	return (stack);
 }

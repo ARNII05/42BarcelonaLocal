@@ -34,6 +34,7 @@ void	do_p(t_stack *src, t_stack *dest, char *op_name)
 		i++;
 	}
 	src->size--;
+	src->n_operations++;
 	putstr(op_name, 1);
 }
 
@@ -54,11 +55,11 @@ void	do_r(t_stack *stack, char *op_name)
 		i++;
 	}
 	stack->data[stack->size - 1] = tmp;
-	if (op_name)
-		putstr(op_name, 1);
+	stack->n_operations++;
+	putstr(op_name, 1);
 }
 
-//Shift down all elements of any stack a by 1.
+//Shift down all elements of any stack by 1.
 //The last element becomes the first one.
 void	do_rrx(t_stack *stack, char *op_name)
 {
@@ -75,8 +76,8 @@ void	do_rrx(t_stack *stack, char *op_name)
 		i--;
 	}
 	stack->data[0] = tmp;
-	if (op_name)
-		putstr(op_name, 1);
+	stack->n_operations++;
+	putstr(op_name, 1);
 }
 
 //Swap the first 2 elements at the top of any stack.
@@ -90,6 +91,6 @@ void	do_s_tasks(t_stack *stack, char *op_name)
 	tmp = stack->data[0];
 	stack->data[0] = stack->data[1];
 	stack->data[1] = tmp;
-	if (op_name)
-		putstr(op_name, 1);
+	stack->n_operations++;
+	putstr(op_name, 1);
 }

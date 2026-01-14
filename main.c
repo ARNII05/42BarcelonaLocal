@@ -16,15 +16,24 @@
 //Output must be only either Error or any operation
 
 /*
-static void	print_stack(t_stack *stack)
+static void	print_stack(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_is_sorted(stack))
+	int total_operations;
+
+	total_operations = stack_a->n_operations + stack_b->n_operations;
+	if (total_operations == 0)
+	{
+		printf("Numbers are alredy sorted");
+		return ;
+	}
+	if (stack_is_sorted(stack_a))
 		printf("Is sorted");
 	else
 		printf("Is not sorted");
 	printf("\nList: ");
-	for (int i = 0; i < stack->size; i++)
-		printf("%d ", stack->data[i]);
+	for (int i = 0; i < stack_a->size; i++)
+		printf("%d ", stack_a->data[i]);
+	printf("\nTotal operations: %d", total_operations);
 }
 */
 
