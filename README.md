@@ -60,7 +60,7 @@ can succeed with different averages:
 ◦ 100 numbers in under 1300 operations and 500 numbers in under
 5500 operations
 
-I sorted 100 numbers in 1084 operations and 500 numbers in 6784.
+_I sorted 100 numbers in 1084 operations and 500 numbers in 6784 operations._
 
 Apart of checking number of operations, here are some things to keep in mind:
 
