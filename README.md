@@ -5,8 +5,7 @@ _This project has been created as part of the 42 curriculum by abellavi_
 This project is called push_swap.
 This project's goal is to sort the args given by the user.
 You have to sort this numbers with 2 stacks:
-1. Stack_a: contains a random number of unique negative and/or positive
-integers.
+1. Stack_a: contains a random number of unique negative and/or positive integers.
 
 2. Stack_b: is empty.
 
