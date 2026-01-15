@@ -14,6 +14,7 @@
 
 //Check norminette, checker_OS and memory leaks
 //Output must be only either Error or any operation
+//Update Makefile
 
 /*
 static void	print_stack(t_stack *stack_a, t_stack *stack_b)
