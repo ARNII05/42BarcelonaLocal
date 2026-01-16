@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-MY_SOURCES = push_swap.c\utils.c\error_functions.c\ft_itoa.c\
+MY_SOURCES = error_functions.c\main.c\operations.c\printable.c\push_swap.c\stack_operations.c\utils.c\
    
 OBJS = $(MY_SOURCES:.c=.o)
 
@@ -23,10 +23,11 @@ fclean: clean
 
 re: fclean all
 
-TEST = test_trim.exe
+TEST = a.exe
 MAIN = main.c
 
 run: $(NAME)
-	$(CC) $(CFLAGS) $(MAIN) -L. -lft -o $(TEST)
+	$(CC) $(CFLAGS) $(MAIN) ./$(NAME) -o $(TEST) 
+	./$(TEST)
 
 .PHONY: all clean fclean re test
