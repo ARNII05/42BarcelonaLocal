@@ -18,7 +18,6 @@ t_stack	init_stack(int capacity)
 
 	stack.cap = capacity;
 	stack.size = 0;
-	stack.n_operations = 0;
 	stack.data = malloc(sizeof(int) * capacity);
 	return (stack);
 }
@@ -42,6 +41,31 @@ int	stack_max_bits(t_stack *stack_a)
 	while ((max_index >> max_bits) != 0)
 		max_bits++;
 	return (max_bits);
+}
+
+void	sort_len_four_five(t_stack *stack_a, t_stack *stack_b)
+{
+	int	nbr_moves;
+	int	lowest_nbr;
+	int	i;
+
+	if (stack_a->size == 4)
+		nbr_moves = 1;
+	else
+		nbr_moves = 2;
+	i = nbr_moves;
+	while (i > 0)
+	{
+		lowest_nbr = lowest_n(stack_a->data, stack_a->size);
+		do_p(stack_a, stack_b, "pb\n");
+		i--;
+	}
+	sort_len_three(stack_a);
+	while (nbr_moves > 0)
+	{
+		do_p(stack_b, stack_a, "pa\n");
+		nbr_moves--;
+	}
 }
 
 //It does all the combinations for a len of 3 (harcoded).

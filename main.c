@@ -15,17 +15,8 @@
 //ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
 //ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
 
-/*
 static void	print_stack(t_stack *stack_a, t_stack *stack_b)
 {
-	int total_operations;
-
-	total_operations = stack_a->n_operations + stack_b->n_operations;
-	if (total_operations == 0)
-	{
-		printf("Numbers are alredy sorted");
-		return ;
-	}
 	if (stack_is_sorted(stack_a))
 		printf("Is sorted");
 	else
@@ -33,9 +24,7 @@ static void	print_stack(t_stack *stack_a, t_stack *stack_b)
 	printf("\nList: ");
 	for (int i = 0; i < stack_a->size; i++)
 		printf("%d ", stack_a->data[i]);
-	printf("\nTotal operations: %d\n", total_operations);
 }
-*/
 
 static void	free_split(char **s, int did_split)
 {
@@ -99,5 +88,6 @@ int	main(int argc, char **argv)
 	if (stack_a.size >= 2 && !stack_is_sorted(&stack_a))
 		push_swap(&stack_a, &stack_b);
 	free_split(argv, did_split);
+	print_stack(&stack_a, &stack_b);
 	return (free(stack_a.data), free(stack_b.data), 1);
 }

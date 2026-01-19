@@ -34,7 +34,6 @@ void	do_p(t_stack *src, t_stack *dest, char *op_name)
 		i++;
 	}
 	src->size--;
-	src->n_operations++;
 	putstr(op_name, 1);
 }
 
@@ -55,7 +54,6 @@ void	do_r(t_stack *stack, char *op_name)
 		i++;
 	}
 	stack->data[stack->size - 1] = tmp;
-	stack->n_operations++;
 	putstr(op_name, 1);
 }
 
@@ -76,7 +74,6 @@ void	do_rrx(t_stack *stack, char *op_name)
 		i--;
 	}
 	stack->data[0] = tmp;
-	stack->n_operations++;
 	putstr(op_name, 1);
 }
 
@@ -91,6 +88,5 @@ void	do_s_tasks(t_stack *stack, char *op_name)
 	tmp = stack->data[0];
 	stack->data[0] = stack->data[1];
 	stack->data[1] = tmp;
-	stack->n_operations++;
 	putstr(op_name, 1);
 }

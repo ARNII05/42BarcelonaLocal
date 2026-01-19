@@ -52,6 +52,25 @@ int	*copy_int(int cap, int *n)
 	return (c);
 }
 
+int lowest_n(int *data, int size)
+{
+	int	i;
+	int	lowest;
+
+	if (size <= 0)
+		return (0); 
+
+	lowest = data[0];
+	i = 1;
+	while (i < size)
+	{
+		if (data[i] < lowest)
+			lowest = data[i];
+		i++;
+	}
+	return (lowest);
+}
+
 void	sort_int(int *n, int size)
 {
 	int	i;

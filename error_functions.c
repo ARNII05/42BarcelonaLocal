@@ -19,6 +19,8 @@ static int	ft_is_digit(char	*str)
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
+	if (str[i] == '\0')
+		return (0);
 	while (str[i] != '\0')
 	{
 		if (str[i] < 48 || str[i] > 57)

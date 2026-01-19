@@ -1,4 +1,4 @@
-NAME = push_swap.a
+NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
@@ -11,6 +11,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar crs $(NAME) $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
 %.o : %.c Makefile push_swap.h
 	$(CC) -c -o $@ $<
@@ -23,7 +24,7 @@ fclean: clean
 
 re: fclean all
 
-TEST = push_swap
+TEST = push_swap.exe
 MAIN = main.c
 
 run: $(NAME)

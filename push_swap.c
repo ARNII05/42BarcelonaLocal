@@ -78,7 +78,11 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 		do_s_tasks(stack_a, "sa\n");
 	else if (stack_a->size == 3)
 		sort_len_three(stack_a);
-	else if (stack_a->size > 3)
+	else if (stack_a->size <= 5)
+	{
+		sort_len_four_five(stack_a, stack_b);
+	}
+	else if (stack_a->size > 5)
 	{
 		set_index(stack_a);
 		sort_index(stack_a, stack_b);
