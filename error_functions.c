@@ -17,11 +17,11 @@ static int	ft_is_digit(char	*str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '-' && ft_strlen(str) > 1)
+	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i] != '\0')
 	{
-		if ((str[i] != 34) && (str[i] < 48 || str[i] > 57))
+		if (str[i] < 48 || str[i] > 57)
 			return (0);
 		i++;
 	}
@@ -44,7 +44,7 @@ static int	any_duplicate(int *nbr, int argc)
 	{
 		while (i < j)
 		{
-			if (nbr[i - 1] != 34 && nbr[i - 1] == nbr[j - 1])
+			if (nbr[i - 1] == nbr[j - 1])
 				return (1);
 			j--;
 		}

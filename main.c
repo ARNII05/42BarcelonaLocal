@@ -41,7 +41,7 @@ static void	free_split(char **s, int did_split)
 {
 	int	i;
 
-	if (!did_split)
+	if (did_split != 1)
 		return ;
 	i = 0;
 	if (!s)
@@ -58,7 +58,7 @@ static int	has_one_arg(int argc, char ***argv)
 	if (argc != 2)
 		return (0);
 	tmp = ft_split((*argv)[1], ' ');
-	if (!tmp || !tmp[1])
+	if (!tmp)
 	{
 		free_split(tmp, 1);
 		return (-1);
@@ -84,8 +84,6 @@ int	main(int argc, char **argv)
 	int		did_split;
 
 	did_split = has_one_arg(argc, &argv);
-	if (did_split == -1)
-		return (0);
 	if (!did_split)
 		argv = argv + 1;
 	stack_a = init_stack(argv_len(argv));
