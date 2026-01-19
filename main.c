@@ -12,9 +12,7 @@
 
 #include "push_swap.h"
 
-//ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
-//ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
-
+/*
 static void	print_stack(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_is_sorted(stack_a))
@@ -25,6 +23,7 @@ static void	print_stack(t_stack *stack_a, t_stack *stack_b)
 	for (int i = 0; i < stack_a->size; i++)
 		printf("%d ", stack_a->data[i]);
 }
+*/
 
 static void	free_split(char **s, int did_split)
 {
@@ -88,6 +87,5 @@ int	main(int argc, char **argv)
 	if (stack_a.size >= 2 && !stack_is_sorted(&stack_a))
 		push_swap(&stack_a, &stack_b);
 	free_split(argv, did_split);
-	print_stack(&stack_a, &stack_b);
 	return (free(stack_a.data), free(stack_b.data), 1);
 }

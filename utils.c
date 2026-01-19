@@ -52,20 +52,19 @@ int	*copy_int(int cap, int *n)
 	return (c);
 }
 
-int lowest_n(int *data, int size)
+int	lowest_n(int *data, int size)
 {
 	int	i;
 	int	lowest;
 
 	if (size <= 0)
-		return (0); 
-
-	lowest = data[0];
+		return (0);
+	lowest = 0;
 	i = 1;
 	while (i < size)
 	{
-		if (data[i] < lowest)
-			lowest = data[i];
+		if (data[i] < data[lowest])
+			lowest = i;
 		i++;
 	}
 	return (lowest);
@@ -95,12 +94,21 @@ void	sort_int(int *n, int size)
 	}
 }
 
-size_t	ft_strlen(const char *c)
+void	bring_min_to_top(t_stack *stack)
 {
-	size_t	i;
+	int	min_i;
+	int	moves;
 
-	i = 0;
-	while (c[i] != 0)
-		i++;
-	return (i);
+	min_i = lowest_n(stack->data, stack->size);
+	if (min_i <= stack->size / 2)
+	{
+		while (min_i-- > 0)
+			do_r(stack, "ra\n");
+	}
+	else
+	{
+		moves = stack->size - min_i;
+		while (min_i++ < stack->size)
+			do_rrx(stack, "rra\n");
+	}
 }

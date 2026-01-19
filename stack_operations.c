@@ -46,7 +46,6 @@ int	stack_max_bits(t_stack *stack_a)
 void	sort_len_four_five(t_stack *stack_a, t_stack *stack_b)
 {
 	int	nbr_moves;
-	int	lowest_nbr;
 	int	i;
 
 	if (stack_a->size == 4)
@@ -56,7 +55,7 @@ void	sort_len_four_five(t_stack *stack_a, t_stack *stack_b)
 	i = nbr_moves;
 	while (i > 0)
 	{
-		lowest_nbr = lowest_n(stack_a->data, stack_a->size);
+		bring_min_to_top(stack_a);
 		do_p(stack_a, stack_b, "pb\n");
 		i--;
 	}
@@ -92,7 +91,7 @@ void	sort_len_three(t_stack *stack)
 		do_s_tasks(stack, "sa\n");
 		do_r(stack, "ra\n");
 	}
-	else
+	else if (!stack_is_sorted(stack))
 		do_rrx(stack, "rra\n");
 }
 

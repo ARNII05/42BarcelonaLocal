@@ -28,8 +28,8 @@ typedef struct s_stack
 }	t_stack;
 long long	ft_atoi(const char *str);
 char		**ft_split(char const *s, char c);
-size_t		ft_strlen(const char *c);
 t_stack		init_stack(int capacity);
+void		bring_min_to_top(t_stack *a);
 void		push_swap(t_stack *stack_a, t_stack *stack_b);
 void		sort_len_four_five(t_stack *stack_a, t_stack *stack_b);
 void		do_p(t_stack *stack_a, t_stack *stack_b, char *op_name);
