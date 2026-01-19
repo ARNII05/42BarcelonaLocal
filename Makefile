@@ -3,31 +3,30 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-MY_SOURCES = error_functions.c\main.c\operations.c\printable.c\push_swap.c\stack_operations.c\utils.c\
+SRC = error_functions.c ft_split.c main.c operations.c printable.c push_swap.c stack_operations.c utils.c
    
-OBJS = $(MY_SOURCES:.c=.o)
-
-$(NAME): $(OBJS)
-	ar crs $(NAME) $(OBJS)
-
+OBJ = $(SRC:.c=.o)
+	
 all: $(NAME)
 
+$(NAME): $(OBJ)
+	ar crs $(NAME) $(OBJ)
+
 %.o : %.c Makefile push_swap.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) -c -o $@ $<
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJ) 
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-TEST = a.exe
+TEST = push_swap
 MAIN = main.c
 
 run: $(NAME)
-	$(CC) $(CFLAGS) $(MAIN) ./$(NAME) -o $(TEST) 
-	./$(TEST)
+	$(CC) $(MAIN) ./$(NAME) -o $(TEST)
 
 .PHONY: all clean fclean re test

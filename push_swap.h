@@ -16,7 +16,6 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <time.h>
 
 # define INT_MAX 2147483647L
 # define INT_MIN -2147483647L
@@ -29,6 +28,7 @@ typedef struct s_stack
 	int	n_operations;
 }	t_stack;
 long long	ft_atoi(const char *str);
+char		**ft_split(char const *s, char c);
 size_t		ft_strlen(const char *c);
 t_stack		init_stack(int capacity);
 void		push_swap(t_stack *stack_a, t_stack *stack_b);

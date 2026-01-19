@@ -21,7 +21,7 @@ static int	ft_is_digit(char	*str)
 		i++;
 	while (str[i] != '\0')
 	{
-		if (str[i] < 48 || str[i] > 57)
+		if ((str[i] != 34) && (str[i] < 48 || str[i] > 57))
 			return (0);
 		i++;
 	}
@@ -44,7 +44,7 @@ static int	any_duplicate(int *nbr, int argc)
 	{
 		while (i < j)
 		{
-			if (nbr[i - 1] == nbr[j - 1])
+			if (nbr[i - 1] != 34 && nbr[i - 1] == nbr[j - 1])
 				return (1);
 			j--;
 		}
@@ -60,14 +60,14 @@ int	fill_stack(t_stack	*stack_a, char **argv)
 	long long	n;
 	int			i;
 
-	i = 1;
+	i = 0;
 	n = 0;
-	while (i <= stack_a->cap)
+	while (i < stack_a->cap)
 	{
 		n = ft_atoi(argv[i]);
 		if (!ft_is_digit(argv[i]) || exceeding_int(n))
 			return (1);
-		stack_a->data[i - 1] = (int) n;
+		stack_a->data[i] = (int) n;
 		stack_a->size++;
 		i++;
 	}
