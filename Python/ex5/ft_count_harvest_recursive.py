@@ -4,7 +4,7 @@ def ft_count_harvest_recursive():
 	main_recursion(day, total_days)
 
 def main_recursion(day : int, total_days: int):
-	if (total_days == day):
+	if total_days == day:
 		print("Harvest time!")
 		return 
 	print("Day", day + 1)
