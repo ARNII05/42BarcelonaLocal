@@ -18,7 +18,7 @@
 # include <stdlib.h>
 
 # define INT_MAX 2147483647L
-# define INT_MIN -2147483647L
+# define INT_MIN -2147483648L
 
 typedef struct s_stack
 {
