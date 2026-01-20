@@ -10,7 +10,6 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar crs $(NAME) $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 %.o : %.c Makefile push_swap.h
@@ -23,11 +22,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-
-TEST = push_swap.exe
-MAIN = main.c
-
-run: $(NAME)
-	$(CC) $(MAIN) ./$(NAME) -o $(TEST)
 
 .PHONY: all clean fclean re test
