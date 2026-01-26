@@ -1,4 +1,8 @@
-def check_plant_health(plant_name, water_level, sunlight_hours) -> None:
+def check_plant_health(
+        plant_name: str,
+        water_level: int,
+        sunlight_hours: int
+        ) -> None:
     sun: str = sunlight_hours
     try:
         if plant_name == "":
