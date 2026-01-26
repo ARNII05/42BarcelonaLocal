@@ -1,9 +1,8 @@
-"""
-Print plant info
-"""
-
-
 def print_plant_specs() -> None:
+    """
+    Print plant specs
+    """
+
     name: str = "Rose"
     height: str = "25cm"
     age: str = "30 days"
