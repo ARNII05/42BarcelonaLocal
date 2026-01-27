@@ -1,4 +1,7 @@
 def water_plants(plant_list: list) -> None:
+    """
+    raise a custom error
+    """
     print("Opening watering system")
     try:
         for plant in plant_list:
@@ -14,6 +17,9 @@ def water_plants(plant_list: list) -> None:
 
 
 def test_watering_system() -> None:
+    """
+    create lists with examples
+    """
     good_list: list = ["Tomato", "Lettuce", "Carrot"]
     print("=== Garden Watering System ===")
     print("\nTesting normal watering...")

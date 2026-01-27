@@ -3,6 +3,9 @@ def check_plant_health(
         water_level: int,
         sunlight_hours: int
         ) -> None:
+    """
+    check differents errors
+    """
     sun: str = sunlight_hours
     try:
         if plant_name == "":
@@ -22,6 +25,9 @@ def check_plant_health(
 
 
 def test_plant_checks() -> None:
+    """
+    create examples
+    """
     print("\nTesting good values")
     check_plant_health("Rose", 3, 5)
     print("\nTesting empty plant name")

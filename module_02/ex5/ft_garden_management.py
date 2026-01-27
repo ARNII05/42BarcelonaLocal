@@ -1,29 +1,56 @@
 class Plant:
+    """
+    Plant class
+    """
     def __init__(self, name: str, water_lvl: int, sunlight_lvl: int):
+        """
+        init Plant
+        """
         self.name = name
         self.water_lvl = water_lvl
         self.sunlight_lvl = sunlight_lvl
 
     def get_name(self) -> str:
+        """
+        get Name
+        """
         return self.name
 
     def get_wl(self) -> int:
+        """
+        get water level
+        """
         return self.water_lvl
 
     def get_sl(self) -> int:
+        """
+        sunlight level
+        """
         return self.sunlight_lvl
 
 
 class GardenError(Exception):
+    """
+    my own error
+    """
     pass
 
 
 class GardenManager:
+    """
+    Manage all plants
+    """
     def __init__(self):
+        """
+        init GardenManager
+        """
         self.plants: Plant = []
         self.water_tank: int = 100
 
     def add_plant(self, name: str, water_lv: int, sunlight_lvl: int) -> None:
+        """
+        func to add plant and check ValueErrors
+        """
         try:
             water_lv = int(water_lv)
             sunlight_lvl = int(sunlight_lvl)
@@ -40,6 +67,9 @@ class GardenManager:
         print(f"Added {name} successfully")
 
     def water_plants(self) -> None:
+        """
+        func to water the plants
+        """
         try:
             for p in self.plants:
                 print(f"Watering {p.get_name()} ", end="")
@@ -53,6 +83,9 @@ class GardenManager:
             print("Closing watering system (cleanup)")
 
     def check_plant_health(self) -> None:
+        """
+        check plant specs
+        """
         try:
             for p in self.plants:
                 msg: str = self.validate_values(p)
@@ -66,6 +99,9 @@ class GardenManager:
             print(f"Error checking {name}: {e}")
 
     def error_recovery(self) -> None:
+        """
+        show all errors
+        """
         try:
             if self.water_tank <= 0:
                 raise GardenError("Not enough water in tank")
@@ -77,6 +113,9 @@ class GardenManager:
             print("\nGarden management system test complete!")
 
     def validate_values(self, plant: Plant) -> str:
+        """
+        validate plant values
+        """
         water_lv = plant.get_wl()
         sunlight_lvl = plant.get_sl()
         if water_lv > 10:
@@ -91,6 +130,9 @@ class GardenManager:
 
 
 def test_garden_management() -> None:
+    """
+    init all tests and call functions
+    """
     print("=== Garden Management System ===")
     gm = GardenManager()
     print("\nAdding plants to garden...")

@@ -1,4 +1,7 @@
 def garden_operations() -> None:
+    """
+    check differents errors
+    """
     try:
         print("\nTesting ValueError")
         int("abc")
@@ -25,6 +28,9 @@ def garden_operations() -> None:
 
 
 def test_error_types() -> None:
+    """
+    main func for errors
+    """
     print("=== Garden Error Types Demo ===")
     garden_operations()
     print("\nTesting multiple errors together...")

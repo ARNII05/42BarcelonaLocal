@@ -1,4 +1,7 @@
 def check_temperature(temp_str: str) -> None:
+    """
+    check the temperature
+    """
     print(f"\nTesting temperature: {temp_str}")
     try:
         converted_nbr: int = int(temp_str)
@@ -14,6 +17,9 @@ def check_temperature(temp_str: str) -> None:
 
 
 def test_temperature_input() -> None:
+    """
+    tests
+    """
     check_temperature("25")
     check_temperature("abc")
     check_temperature("100")
