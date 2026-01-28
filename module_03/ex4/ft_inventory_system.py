@@ -85,8 +85,7 @@ class Inventory:
 
     def print_inventory(self) -> None:
         print("\n=== Current Inventory ===")
-        for item in self.inventory.values():
-            name: str = item.get_name()
+        for name, item in self.inventory.items():
             values: int = item.get_values()
             percent: float = self.item_percert(values)
             print(f"{name}: {values} units ({percent:.1f}%)")
