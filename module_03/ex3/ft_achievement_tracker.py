@@ -57,7 +57,6 @@ def count_rare(set_1: set[str], set_2: set[str], set_3: set[str]) -> set[str]:
 
 
 def common_rare_arch(set_1: set[str], set_2:
-                    
                      set[str], set_3: set[str]) -> None:
     """
     prints the common and rarest archeivements
