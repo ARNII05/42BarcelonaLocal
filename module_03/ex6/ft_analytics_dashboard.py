@@ -1,6 +1,9 @@
 
 
 def high_scorers(name: list[str], scores: list[int]) -> list[str]:
+    """
+    keep player scores above 2k points (lists)
+    """
     high: list[str] = []
     i: int = 0
     while i < len(scores):
@@ -11,6 +14,9 @@ def high_scorers(name: list[str], scores: list[int]) -> list[str]:
 
 
 def scorers_doubled(scores: list[int]) -> list[int]:
+    """
+    keep player scores equal or above 4k points (lists)
+    """
     doubled: list[int] = []
     i: int = 0
     while i < len(scores):
@@ -21,6 +27,9 @@ def scorers_doubled(scores: list[int]) -> list[int]:
 
 
 def active(name: list[int], active_p: list[bool]) -> list[str]:
+    """
+    keeps active players (lists)
+    """
     active: list[str] = []
     i: int = 0
     while i < len(name):
@@ -31,6 +40,9 @@ def active(name: list[int], active_p: list[bool]) -> list[str]:
 
 
 def list_examples() -> int:
+    """
+    create lists and print all data
+    """
     list_name: list[str] = ["Patry", "Ade", "Dylan", "Arnau", "Veri", "Dani"]
     list_scores: list[int] = [1850, 4200, 2500, 1999, 4700, 3100]
     active_players: list[bool] = [True, True, True, True, False, False]
@@ -44,6 +56,9 @@ def list_examples() -> int:
 
 
 def dict_scores(my_dict: dict[str, list[int]]) -> dict[str, int]:
+    """
+    keep player scores (dict)
+    """
     scores: dict[str, int] = {}
     for key in my_dict:
         scores[key] = my_dict[key][0]
@@ -51,6 +66,9 @@ def dict_scores(my_dict: dict[str, list[int]]) -> dict[str, int]:
 
 
 def dict_category(my_dict: dict[str, list[int]]) -> dict[str, int]:
+    """
+    asign point category (dict)
+    """
     cat: dict[str, int] = {
         "High": 0,
         "Medium": 0,
@@ -67,6 +85,9 @@ def dict_category(my_dict: dict[str, list[int]]) -> dict[str, int]:
 
 
 def arch_count(my_dict: dict[str, list[int]]) -> dict[str, int]:
+    """
+    keep archievements (dict)
+    """
     count: dict[str, int] = {}
     for key in my_dict:
         count[key] = my_dict[key][1]
@@ -74,6 +95,9 @@ def arch_count(my_dict: dict[str, list[int]]) -> dict[str, int]:
 
 
 def dict_examples() -> dict[str, list[int]]:
+    """
+    create dict and print data
+    """
     my_dict: dict[str, list[int]] = {
         "Patry": [1850, 7],
         "Ade": [4200, 12],
@@ -92,6 +116,9 @@ def dict_examples() -> dict[str, list[int]]:
 
 
 def set_examples() -> set[str]:
+    """
+    create sets and print data
+    """
     p_set: set[str] = {'Patry', 'Ade', 'Dylan', 'Arnau', 'Veri', 'Dani'}
     regions: set[str] = {'north', 'east', 'central'}
     set_1: set[str] = {'first_kill', 'level_10',
@@ -106,6 +133,9 @@ def set_examples() -> set[str]:
 
 
 def best(d: dict[str, list[int]], s: dict[str, int]) -> dict[str, list[int]]:
+    """
+    return the player with the most points
+    """
     my_dict: dict[str, list[int]] = {}
     for key in d:
         if d[key][0] == max(s.values()):
@@ -114,6 +144,9 @@ def best(d: dict[str, list[int]], s: dict[str, int]) -> dict[str, list[int]]:
 
 
 def best_name(d: dict[str, list[int]], s: dict[str, int]) -> str:
+    """
+    return the player's name with the most points
+    """
     key: str = ""
     for keys in d:
         if d[keys][0] == max(s.values()):
@@ -122,6 +155,9 @@ def best_name(d: dict[str, list[int]], s: dict[str, int]) -> str:
 
 
 def combined(len_: int, my_set: set[str], d: dict[str, list[int]]) -> None:
+    """
+    combined tests (lists,sets and dicts)
+    """
     scores: dict[str, int] = dict_scores(d)
     arch: dict[str, int] = arch_count(d)
     best_p: dict[str, list[int]] = best(d, scores)
@@ -134,6 +170,9 @@ def combined(len_: int, my_set: set[str], d: dict[str, list[int]]) -> None:
 
 
 def call_functs() -> None:
+    """
+    call all main functions
+    """
     print("=== Game Analytics Dashboard ===")
     print("\n=== List Comprehension Examples ===")
     len_: int = list_examples()
