@@ -1,4 +1,4 @@
-from typing import Any, List, Dict, Union, Optional
+from typing import Any
 from abc import ABC, abstractmethod
 
 
@@ -18,52 +18,131 @@ class DataProcessor(ABC):
 class NumericProcessor(DataProcessor):
     def __init__(self):
         super().__init__()
-        print("\nInitializing Numeric Processor..")
+        self.nbr: list[int] = []
+        self.validation: bool = True
+        self.count: int = 0
+        print("\nInitializing Numeric Processor...")
 
-    @abstractmethod
+    def sum_(self, data) -> int:
+        total: int = 0
+        for n in data:
+            total += n
+        return total
+
     def process(self, data: Any) -> str:
-       if self.validate(data):
-        return f"Procesing data: {data}"
+        result: str = "Error processing data"
+        try:
+            print(f"Procesing data: {data}")
+            if self.validate(data):
+                sum_n: int = self.sum_(data)
+                avg: int = sum_n / self.count
+                op: str = f"sum={sum_n}, avg={avg:.1f}"
+                result = f"{self.count} numeric values, {op}"
+                print("Validation: Numeric data validated")
+            else:
+                print("Data is not numeric")
+        except Exception as e:
+            return f"{e}"
+        finally:
+            return self.format_output(result)
 
-    @abstractmethod
     def validate(self, data: Any) -> bool:
-        print("Validation: Numeric data verified")
-        return True
+        try:
+            for n in data:
+                self.nbr.append(n + 0)
+                self.count += 1
+            return self.count > 0
+        except Exception:
+            return False
 
     def format_output(self, result: str) -> str:
-        return result
+        return f"Output: Processed: {result}"
 
 
 class TextProcessor(DataProcessor):
     def __init__(self):
         super().__init__()
-        print("\nInitializing Text Processor..")
+        self.words: int = 1
+        self.chars: int = 0
+        print("\nInitializing Text Processor...")
 
-    @abstractmethod
     def process(self, data: Any) -> str:
-        return f"Procesing data: {data}"
+        result: str = "No text given"
+        try:
+            print("Processing data: ", end="")
+            if self.validate(data):
+                print(f"{data}")
+                result = f"{self.chars} characters, {self.words} words"
+            else:
+                print("Data is not a String")
+        except Exception as e:
+            return f"Error: {e}"
+        finally:
+            print("Validation: Text data verified")
+            return self.format_output(result)
 
-    @abstractmethod
     def validate(self, data: Any) -> bool:
-        print("Validation: Text data verified")
-        return True
+        try:
+            for n in data:
+                _ = n + '0'
+                if n == " ":
+                    self.words += 1
+                self.chars += 1
+            return True
+        except Exception:
+            return False
 
     def format_output(self, result: str) -> str:
-        return result
+        return f"Output: Processed text: {result}"
 
 
 class LogProcessor(DataProcessor):
     def __init__(self):
         super().__init__()
-        print("\nInitializing Log Processor..")
+        print("\nInitializing Log Processor...")
 
-    @abstractmethod
     def process(self, data: Any) -> str:
-        print()
+        result: str = "Data is not a log type"
+        try:
+            print("Processing data: ", end="")
+            if self.validate(data):
+                print(f"{data}")
+                print("Validation: Log entry verified")
+                if "ERROR" in data:
+                    result = f"[ALERT] level detected {data}"
+                else:
+                    result = f"[INFO] level detected {data}"
+            else:
+                print("Validation: Data is not a valid log")
+                print("Valid -> [INFO/ERROR]: info")
+        except Exception as e:
+            print(f"ERROR: {e}")
+        finally:
+            return self.format_output(result)
 
-    @abstractmethod
     def validate(self, data: Any) -> bool:
-        pass
+        if "ERROR" not in data and "INFO" not in data:
+            return False
+        if ":" not in data:
+            return False
+        return True
 
     def format_output(self, result: str) -> str:
-        return result
+        return f"Output: {result}"
+
+
+def init_classes() -> None:
+    print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===")
+    data: list[int] = [1, 2, 7]
+    string: str = "Hello Nexus World"
+    log_text: str = "INFO: Connection timeout"
+    nbr: NumericProcessor = NumericProcessor()
+    print(nbr.process(data))
+    text: TextProcessor = TextProcessor()
+    print(text.process(string))
+    log: LogProcessor = LogProcessor()
+    print(log.process(log_text))
+
+
+if __name__ == "__main__":
+    init_classes()
