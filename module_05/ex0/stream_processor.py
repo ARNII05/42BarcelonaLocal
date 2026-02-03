@@ -123,9 +123,7 @@ class LogProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
         if ":" not in data:
             return False
-        if "ERROR" not in data and "INFO" not in data:
-            return False
-        return True
+        return "ERROR" in data or "INFO" in data
 
     def format_output(self, result: str) -> str:
         return f"Output: {result}"
