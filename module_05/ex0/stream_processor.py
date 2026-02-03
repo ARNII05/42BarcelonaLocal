@@ -113,17 +113,17 @@ class LogProcessor(DataProcessor):
                 else:
                     result = f"[INFO] level detected {data}"
             else:
+                print("Valid data -> [INFO/ERROR]: info")
                 print("Validation: Data is not a valid log")
-                print("Valid -> [INFO/ERROR]: info")
         except Exception as e:
             print(f"ERROR: {e}")
         finally:
             return self.format_output(result)
 
     def validate(self, data: Any) -> bool:
-        if "ERROR" not in data and "INFO" not in data:
-            return False
         if ":" not in data:
+            return False
+        if "ERROR" not in data and "INFO" not in data:
             return False
         return True
 
