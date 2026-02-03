@@ -19,7 +19,6 @@ class NumericProcessor(DataProcessor):
     def __init__(self):
         super().__init__()
         self.nbr: list[int] = []
-        self.validation: bool = True
         self.count: int = 0
         print("\nInitializing Numeric Processor...")
 
