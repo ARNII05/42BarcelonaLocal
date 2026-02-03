@@ -12,7 +12,7 @@ class DataProcessor(ABC):
         pass
 
     def format_output(self, result: str) -> str:
-        pass
+        return f"Output: {result}"
 
 
 class NumericProcessor(DataProcessor):
@@ -36,7 +36,7 @@ class NumericProcessor(DataProcessor):
                 sum_n: int = self.sum_(data)
                 avg: int = sum_n / self.count
                 op: str = f"sum={sum_n}, avg={avg:.1f}"
-                result = f"{self.count} numeric values, {op}"
+                result = f"Processed: {self.count} numeric values, {op}"
                 print("Validation: Numeric data validated")
             else:
                 print("Data is not numeric")
@@ -53,9 +53,6 @@ class NumericProcessor(DataProcessor):
             return self.count > 0
         except Exception:
             return False
-
-    def format_output(self, result: str) -> str:
-        return f"Output: Processed: {result}"
 
 
 class TextProcessor(DataProcessor):
@@ -78,7 +75,7 @@ class TextProcessor(DataProcessor):
             return f"Error: {e}"
         finally:
             print("Validation: Text data verified")
-            return self.format_output(result)
+            return self.format_output(f"Processed text: {result}")
 
     def validate(self, data: Any) -> bool:
         try:
@@ -90,9 +87,6 @@ class TextProcessor(DataProcessor):
             return True
         except Exception:
             return False
-
-    def format_output(self, result: str) -> str:
-        return f"Output: Processed text: {result}"
 
 
 class LogProcessor(DataProcessor):
@@ -124,20 +118,17 @@ class LogProcessor(DataProcessor):
             return False
         return "ERROR" in data or "INFO" in data
 
-    def format_output(self, result: str) -> str:
-        return f"Output: {result}"
-
 
 def init_classes() -> None:
     print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===")
     data: list[int] = [1, 2, 7]
     string: str = "Hello Nexus World"
     log_text: str = "INFO: Connection timeout"
-    nbr: NumericProcessor = NumericProcessor()
+    nbr: DataProcessor = NumericProcessor()
     print(nbr.process(data))
-    text: TextProcessor = TextProcessor()
+    text: DataProcessor = TextProcessor()
     print(text.process(string))
-    log: LogProcessor = LogProcessor()
+    log: DataProcessor = LogProcessor()
     print(log.process(log_text))
 
 
