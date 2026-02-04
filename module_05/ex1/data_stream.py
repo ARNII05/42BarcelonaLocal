@@ -1,6 +1,7 @@
 from typing import Any, List, Dict, Union, Optional
 from abc import ABC, abstractmethod
 
+
 class DataStream(ABC):
     def __init__(self, stream_id: str, stream_type: str):
         self.stream_id: str = stream_id
@@ -11,7 +12,8 @@ class DataStream(ABC):
     def process_batch(self, data_batch: List[Any]) -> str:
         pass
 
-    def filter_data(self, data_batch: List[Any], criteria: Optional[str] = None) -> List[Any]:
+    def filter_data(self, data_batch: List[Any],
+                    criteria: Optional[str] = None) -> List[Any]:
         try:
             if criteria is None:
                 return data_batch
@@ -25,6 +27,7 @@ class DataStream(ABC):
             "type": self.stream_type,
             "total_processed": self.total_processed
         }
+
 
 class SensorStream(DataStream):
     def __init__(self, stream_id: str):
@@ -40,19 +43,23 @@ class SensorStream(DataStream):
                 values.append(float(raw))
             self.total_processed += len(values)
             avg: float = sum(values) / len(values) if values else 0.0
-            return f"Sensor analysis: {len(values)} readings processed, avg: {avg:.1f}"
+            reading: str = f"readings processed, avg: {avg:.1f}"
+            return f"Sensor analysis: {len(values)} {reading}"
         except Exception as e:
             print(f"ERROR: {e}")
 
-    def filter_data(self, data_batch: List[str], criteria: Optional[str] = None) -> List[str]:
+    def filter_data(self, data_batch: List[str],
+                    criteria: Optional[str] = None) -> List[str]:
         try:
             if criteria is None:
                 return data_batch
             if criteria == "high":
-                return [x for x in data_batch if x.startswith("temp:") and float(x.split(":")[1]) > 30]
+                return [x for x in data_batch if x.startswith("temp:")
+                        and float(x.split(":")[1]) > 30]
             return data_batch
         except Exception as e:
             print(f"ERROR: {e}")
+
 
 class TransactionStream(DataStream):
     def __init__(self, stream_id: str):
@@ -72,11 +79,13 @@ class TransactionStream(DataStream):
             self.total_processed += len(data_batch)
             if (net < 0):
                 sign = ""
-            return f"Transaction analysis: {len(data_batch)} operations, net flow: {sign}{net} units"
+            flow: str = f" net flow: {sign}{net} units"
+            return f"Transaction analysis: {len(data_batch)} operations,{flow}"
         except Exception as e:
             print(f"ERROR: {e}")
 
-    def filter_data(self, data_batch: List[str], criteria: Optional[str] = None) -> List[str]:
+    def filter_data(self, data_batch: List[str],
+                    criteria: Optional[str] = None) -> List[str]:
         try:
             if criteria is None:
                 return data_batch
@@ -85,6 +94,7 @@ class TransactionStream(DataStream):
             return data_batch
         except Exception as e:
             print(f"ERROR: {e}")
+
 
 class EventStream(DataStream):
     def __init__(self, stream_id: str):
@@ -96,9 +106,11 @@ class EventStream(DataStream):
         try:
             errors: list[str] = [x for x in data_batch if x == "error"]
             self.total_processed += len(data_batch)
-            return f"Event analysis: {len(data_batch)} events, {len(errors)} error detected"
+            err: str = f"{len(errors)} error detected"
+            return f"Event analysis: {len(data_batch)} events, {err}"
         except Exception as e:
             print(f"ERROR: {e}")
+
 
 class StreamProcessor:
     def __init__(self, streams: List[DataStream]):
@@ -107,11 +119,13 @@ class StreamProcessor:
     def run_batches(self, batches: List[List[str]]) -> None:
         try:
             print("\n=== Polymorphic Stream Processing ===")
-            for i, (stream, batch) in enumerate(zip(self.streams, batches), start=1):
+            for i, (stream, batch) in enumerate(zip(self.streams,
+                                                    batches), start=1):
                 result: str = stream.process_batch(batch)
                 print(f"Batch {i} Result: {result}")
         except Exception as e:
             print(f"ERROR: {e}")
+
 
 if __name__ == "__main__":
     print("=== CODE NEXUS - POLYMORPHIC STREAM SYSTEM ===")
@@ -134,4 +148,6 @@ if __name__ == "__main__":
         ["login", "error", "logout"]
     ])
     print("Stream filtering active: High-priority data only")
-    print("Filtered results:", sensor.filter_data(["temp:29", "temp:35"], "high"), trans.filter_data(["buy:50", "buy:200"], "large"))
+    print("Filtered results: ", end="")
+    print(sensor.filter_data(["temp:29", "temp:35"], "high"), end="")
+    print(trans.filter_data(["buy:50", "buy:200"], "large"))
