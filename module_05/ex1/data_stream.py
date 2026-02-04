@@ -132,16 +132,16 @@ if __name__ == "__main__":
     sensor_list: list[str] = ["temp:22.5", "humidity:65", "pressure:1013"]
     trans_list: list[str] = ["buy:100", "sell:150", "buy:75"]
     event_list: list[str] = ["login", "error", "logout"]
-    sensor = SensorStream("SENSOR_001")
+    sensor: DataStream = SensorStream("SENSOR_001")
     print(f"Processing sensor batch: {sensor_list}")
     print(sensor.process_batch(sensor_list))
-    trans = TransactionStream("TRANS_001")
+    trans: DataStream = TransactionStream("TRANS_001")
     print(f"Processing transaction batch: {trans_list}")
     print(trans.process_batch(trans_list))
-    event = EventStream("EVENT_001")
+    event: DataStream = EventStream("EVENT_001")
     print(f"Processing event batch: {event_list}")
     print(event.process_batch(event_list))
-    processor = StreamProcessor([sensor, trans, event])
+    processor: StreamProcessor = StreamProcessor([sensor, trans, event])
     processor.run_batches([
         ["temp:31.2", "temp:28.0"],
         ["buy:100", "buy:200", "sell:50", "buy:75"],
